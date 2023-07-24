@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="business.cost.management" />
+	<context:component-scan base-package="woo.cost.mgmt" />
 	
 	
 	
