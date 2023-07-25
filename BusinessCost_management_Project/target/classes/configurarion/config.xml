@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+	<typeAliases>
+ 		<typeAlias type="woo.cost.mgmt.admin.model.AdminVO"
+			alias="AdminVO" />
+		<typeAlias type="woo.cost.mgmt.businessCost.model.BusinessCostVO"
+			alias="BusinessCostVO" />
+		<typeAlias type="woo.cost.mgmt.client.model.CilentVO"
+			alias="CilentVO" />
+	</typeAliases>
+</configuration>
+  
+  
+  
+  

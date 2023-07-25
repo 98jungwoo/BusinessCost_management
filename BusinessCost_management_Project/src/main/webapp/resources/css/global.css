@@ -1,0 +1,59 @@
+ a:link{
+ text-decoration: none !important;
+ }
+  a:hover{
+ text-decoration: none !important;
+ }
+ a:active{
+text-decoration: none !important;
+}
+ a:visited{  
+  text-decoration: none !important;
+  }
+.form-control:focus {
+ border-color: #fff;
+ outline: 0;
+ box-shadow: none
+}
+
+input.form-control:focus, select.form-control:focus {
+ box-shadow: none;
+ outline: 0 auto -webkit-focus-ring-color;
+ background-color: #fff;
+ border-color: #ced4da;
+}
+
+button:focus {
+ box-shadow: none !important;
+ outline: none !important;
+}
+
+.page-link:focus {
+ box-shadow: none !important;
+ outline: none !important;
+ background-color: #fff !important;
+ border-color: #ced4da !important;
+}
+
+textarea:focus {
+  box-shadow: none !important;
+ outline: none !important;
+}
+
+
+input:invalid {
+ box-shadow: none
+}
+
+.form-control::-moz-placeholder {
+ color: #fff
+}
+
+.form-control:-ms-input-placeholder {
+ color: #fff
+}
+
+.form-control::-webkit-input-placeholder {
+ color: #fff
+}
+
