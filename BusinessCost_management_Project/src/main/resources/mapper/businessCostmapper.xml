@@ -6,4 +6,84 @@
 <!-- 네이스페이스의 기준은 패키지의 기준이다. = VO를 설정해주는게 좋다. -->
 <mapper namespace="woo.cost.mgmt.businessCost.model.BusinessCostVO">
 
+<!-- 처음 사용할때는 사업명, 참여인원, 총 사업비를 작성하도록 한다. -->
+<insert id="BusinessCostTotalInsert" parameterType="BusinessCostVO">
+insert 
+into 
+	tbl_businesscost (businesstype, totalclients ,totalbusinesscost) 
+values 
+	(#{businessType}, #{totalClients}, #{totalBusinessCost})
+</insert>
+
+<!-- 처음시작할때 총사업비를 입력한 후, 비교를 위해 총사업비를 불러온다. + 메인 페이지에서 불러오게 할게 -->
+<!-- progresspercentage 진행률 값임 -->
+<select id="BusinessCostselect" resultType="BusinessCostVO">
+select 
+    bc.businesstype, 
+    bc.adminsalary, 
+    bc.projectexpense, 
+    bc.clientwages, 
+    bc.totalbusinesscost, 
+    bc.totalclients,
+    case
+        when bc.totalbusinesscost = 0 then 0.0 
+        else round(((used.adminsalary + used.projectexpense + used.clientwages) / bc.totalbusinesscost) * 100, 1)
+    end as progresspercentage
+from 
+    tbl_businesscost bc
+left join (
+    select 
+        sum(usedadminsalary) as adminsalary,
+        sum(usedprojectexpense) as projectexpense,
+        sum(usedclientwages) as clientwages
+    from 
+        tbl_usedbusinesscost
+) used on 1=1;	      
+</select>
+
+<!-- 처음시작할때 총사업비를 입력한 후, 각각 세부사업비내용을 입력하도록 한다. -->
+<!-- 총 사업비와 각각저장한 사업비의 합이 같아야지만 넘어가게 하는건 자바스크립트에서하자-->
+<update id="BusinessCostInsert" parameterType="BusinessCostVO">
+update tbl_businesscost
+set clientwages = 
+    case
+        when businesstype = '공익형' then #{clientWages}
+        when businesstype = '시장형' then #{clientWages}
+        when businesstype = '사회서비스형' then #{clientWages}
+    end,
+    adminsalary = 
+    case
+        when businesstype = '공익형' then #{adminSalary}
+        when businesstype = '시장형' then #{adminSalary}
+        when businesstype = '사회서비스형' then #{adminSalary}
+    end,
+    projectexpense = 
+    case
+        when businesstype = '공익형' then #{projectExpense}
+        when businesstype = '시장형' then #{projectExpense}
+        when businesstype = '사회서비스형' then #{projectExpense}
+    end
+where businesstype in ('공익형', '시장형', '사회서비스형');
+</update>
+
+<!-- 사업비 진행현환들어가면 사업종류 선택해서 월별로 임금, 담당임금, 진행비가 보여지며, 토탈 금액도 보여지게 할거임  (비지니스타입)-->
+<select id="#" parameterType="BusinessCostVO" resultType="BusinessCostVO">
+</select>
+
+<!-- 사업비 진행현환들어가면 해당 사업종류 선택해서에서 해당 월 누르면 세부 수정페이지에서 보여지게할거임 (비지니스타입, 해달월) -->
+<select id="#" parameterType="BusinessCostVO" resultType="BusinessCostVO">
+</select>
+
+<!-- 사업비 진행현환들어가면 해당 사업종류 선택해서에서 해당 월 누르면 세부 내용 수정하도록할거임  (비지니스타입, 해달월) -->
+<update id="#" parameterType="BusinessCostVO" >
+</update>
+
+
+<!-- 총 사업비 수정할수 있도록 설정 할까? -->
+<update id="#" parameterType="BusinessCostVO">
+</update>
+
+
+<!-- 이렇게하면 비지니스코스트 쿼리 끝! -->
+
 </mapper>
