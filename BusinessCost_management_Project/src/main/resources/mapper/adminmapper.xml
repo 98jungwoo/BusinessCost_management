@@ -5,6 +5,51 @@
   
 <!-- 네이스페이스의 기준은 패키지의 기준이다. = VO를 설정해주는게 좋다. -->
 <mapper namespace="woo.cost.mgmt.admin.model.adminVO">
+
+<!-- 나랑 회사가 같은 사람들만 리스트로 볼수 있게 한다. -->
+ <select id="#" parameterType="adminVO" resultType="adminVO">
+select 
+	adminnum, company, adminname, adminbirthday, jobmanager, businesstype, 
+    adminphonenum, userid, password
+from 
+	tbl_adminmember
+where 
+	company = #{company}
+ </select>
  
+ <!-- 같은 회사안에서도 담당자의 정보를 상세하게 확인할수 있다. -->
+ <!-- 이건 jsp에서 하기 세션스코프세션아이디와 같아야지만 샐랙트디테일들어올수 있음-->
+ <select id="#" parameterType="adminVO" resultType="adminVO">
+select 
+	adminnum, company, adminname, adminbirthday, jobmanager, businesstype, 
+    adminphonenum, userid, password
+from 
+	tbl_adminmember
+where 
+	userid = #{userid}
+ </select>
+
+<!-- 담당자 회원가입 -->
+ <insert id="#" parameterType="adminVO">
+ insert 
+ 	into tbl_adminmember(
+ 		adminnum, company, adminname, adminbirthday, jobmanager, businesstype, 
+    	adminphonenum, userid, password)
+    valus(
+    	(select max(adminnum)+1 as adminnum from tbl_adminmember),
+   		 #{company}, #{adminname}, #{adminbirthday}, #{jobmanager}, #{businesstype}, 
+   		 #{adminphonenum}, #{userid}, #{password})
+ </insert>
+ 
+<!-- 회원정보 수정 -->
+ <update id="#" parameterType="adminVO">
+update 
+	tbl_adminmember
+	set
+		company, adminname, adminbirthday, jobmanager, businesstype, 
+    	adminphonenum, password
+	where 
+		userid = #{userid}
+</update>
 
 </mapper>

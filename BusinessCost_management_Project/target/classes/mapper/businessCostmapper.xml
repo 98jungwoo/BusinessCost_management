@@ -16,12 +16,12 @@ values
 </insert>
 
 <!-- 총 사업비 수정할수 있도록 설정 할까? -->
-<update id="#" parameterType="BusinessCostVO">
+<update id="BusinessCostTotalUpdate" parameterType="BusinessCostVO">
 update tbl_businesscost
 set
 	totalbusinesscost=#{totalbusinesscost} 
 where
-    businesstype=#{businesstype};
+    businesstype=#{businesstype}
 </update>
 
 <!-- 처음시작할때 총사업비를 입력한 후, 비교를 위해 총사업비를 불러온다. + 메인 페이지에서 불러오게 할게   올해에 해당하는 내용만,,,? 해가 지나가면 초기화되는거 가능?-->
@@ -47,12 +47,12 @@ left join (
         sum(usedclientwages) as clientwages
     from 
         tbl_usedbusinesscost
-) used on 1=1;	      
+) used on 1=1   
 </select>
 
 <!-- 처음시작할때 총사업비를 입력한 후, 각각 세부사업비내용을 입력하도록 한다. -->
 <!-- 총 사업비와 각각저장한 사업비의 합이 같아야지만 넘어가게 하는건 자바스크립트에서하자-->
-<update id="BusinessCostInsert" parameterType="BusinessCostVO">
+<update id="BusinessCostDetailUpdate" parameterType="BusinessCostVO">
 update tbl_businesscost
 set clientwages = 
     case
@@ -72,14 +72,14 @@ set clientwages =
         when businesstype = '시장형' then #{projectExpense}
         when businesstype = '사회서비스형' then #{projectExpense}
     end
-where businesstype in ('공익형', '시장형', '사회서비스형');
+where businesstype in ('공익형', '시장형', '사회서비스형')
 </update>
 
 <!-- 사업비 진행현황 들어가면 사업종류 선택해서 월별로 임금, 담당임금, 진행비가 보여지며, 토탈 금액도 보여지게 할거임  (비지니스타입) 리스트로 불러오는거임-->
 <!-- 토탈은 jsp에서만 계산할수 잇는 방법이 있나? #{vo.usedclientWages + vo.usedadminSalary + vo.usedprojectExpense} 이렇게 하면 jsp에서만 토탈 보여지게할수 있음 -->
 <!-- 자바스크립트로 할수잇는방법잇음 (total.jsp) 그거 참고하기 -->
 <!-- 그럼 VO를 DTO로 바꿔야하나 그럼 MVC모델이 맞나 ? -->
-<select id="#" parameterType="BusinessCostVO" resultType="BusinessCostVO">
+<select id="monthUsedSelect" parameterType="BusinessCostVO" resultType="BusinessCostVO">
 select
     ubc.usedmonth,
     ubc.usedclientWages,
@@ -90,26 +90,11 @@ from
 inner join
     tbl_businesscost bc on bc.businesstype = ubc.businesstype
 where
-    bc.businesstype = #{businesstype};
+    bc.businesstype = #{businesstype}
 </select>
 
-<!-- 사업비 진행현환들어가면 해당 사업종류 선택해서에서 해당 월 누르면 세부 수정페이지에서 보여지게할거임 (비지니스타입, 해달월) -->
-<select id="#" parameterType="BusinessCostVO" resultType="BusinessCostVO">
-select
-    ubc.usedmonth,
-    ubc.usedclientWages,
-    ubc.usedadminSalary,
-    ubc.usedprojectExpense,
-from
-    tbl_usedbusinesscost ubc
-inner join
-    tbl_businesscost bc on bc.businesstype = ubc.businesstype
-where
-    bc.businesstype = #{businesstype} and ubc.usedmonth = #{usedmonth}
-</select>
-
-<!-- 사업비 진행현환들어가면 해당 사업종류 선택해서에서 해당 월 누르면 세부 내용 수정하도록할거임  (비지니스타입, 해달월) -->
-<update id="#" parameterType="BusinessCostVO" >
+<!-- 사업비 진행현환들어가면 해당 사업종류 선택해서에서 해당 월 누르면 세부 내용 입력하도록할거임  (비지니스타입, 해달월) -->
+<update id="monthUsedUpdate" parameterType="BusinessCostVO" >
 update 
     tbl_usedbusinesscost ubc
 inner join 
