@@ -42,9 +42,9 @@ from
     tbl_businesscost bc
 left join (
     select 
-        sum(usedadminsalary) as adminsalary,
-        sum(usedprojectexpense) as projectexpense,
-        sum(usedclientwages) as clientwages
+        sum(totalusedadminsalary) as adminsalary,
+        sum(totalusedprojectexpense) as projectexpense,
+        sum(totalusedclientwages) as clientwages
     from 
         tbl_usedbusinesscost
 ) used on 1=1   
@@ -82,9 +82,9 @@ where businesstype in ('공익형', '시장형', '사회서비스형')
 <select id="monthUsedSelect" parameterType="BusinessCostVO" resultType="BusinessCostVO">
 select
     ubc.usedmonth,
-    ubc.usedclientWages,
-    ubc.usedadminSalary,
-    ubc.usedprojectExpense,
+    ubc.totalusedclientWages,
+    ubc.totalusedadminSalary,
+    ubc.totalusedprojectExpense,
 from
     tbl_usedbusinesscost ubc
 inner join
@@ -100,9 +100,9 @@ update
 inner join 
     tbl_businesscost bc on bc.businesstype = ubc.businesstype
 set 
-    ubc.usedclientwages = #{usedclientwages},
-    ubc.usedadminsalary = #{usedadminsalary},
-    ubc.usedprojectexpense = #{usedprojectexpense}
+    ubc.totalusedclientwages = #{totalusedclientwages},
+    ubc.totalusedadminsalary = #{totalusedadminsalary},
+    ubc.totalusedprojectexpense = #{totalusedprojectexpense}
 where 
     bc.businesstype = #{businesstype} and ubc.usedmonth = #{usedmonth}
 </update>
