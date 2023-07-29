@@ -6,20 +6,60 @@
 <!-- 네이스페이스의 기준은 패키지의 기준이다. = VO를 설정해주는게 좋다. -->
 <mapper namespace="woo.cost.mgmt.client.model.clientVO">
 
+<!-- 참여자 정보 전체보기 -->
  <select id="#" parameterType="clientVO" resultType="clientVO">
-
+select 
+	clientNum,
+	totalClients,
+	clientName,
+	clientBirthdate,
+	participantStatus,
+	totalIndividualSalary,
+	businessType,
+	adminName
+from
+	tbl_clientMemeber
  </select>
  
+ <!-- 참여자 개인 정보 확인(및 그동안 지급한 임금 월별  확인) 리스트별로 보여지게 해야함 ??? -->
  <select id="#" parameterType="clientVO" resultType="clientVO">
-
+select 
+	cm.clientNum,
+	cm.totalClients,
+	cm.clientName,
+	cm.clientBirthdate,
+	cm.participantStatus,
+	cm.totalIndividualSalary,
+	cm.businessType,
+	cm.adminName
+from
+	tbl_clientMemeber cm
+inner join
+    select 
+        sum(ubc.usedadminsalary) as adminsalary,
+        sum(ubc.usedprojectexpense) as projectexpense,
+        sum(ubc.usedclientwages) as clientwages
+    from 
+        tbl_usedbusinesscost ubc
+    where
+    	ubc.usedMonth= #{usedMonth}
+) used on 1=1   
  </select>
 
+<!-- 참여자 등록 -->
  <insert id="#" parameterType="clientVO">
-
+insert 
+into 
+	tbl_clientMemeber (clientNum, clientName ,clientBirthdate, participantStatus, 
+					   totalIndividualSalary, businessType, adminName) 
+values (
+	(select max(clientNum)+1 as clientNum from tbl_clientMemeber), 
+	#{clientName}, #{clientBirthdate}, #{participantStatus}, 
+	#{totalIndividualSalary}, #{businessType}, #{adminName}	)
  </insert>
  
- <update id="#" parameterType="clientVO">
+ <select id="#" parameterType="clientVO">
 
-</update>
+</select>
 
 </mapper>
