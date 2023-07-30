@@ -5,12 +5,12 @@
   
   <configuration>
 	<typeAliases>
- 		<typeAlias type="woo.cost.mgmt.admin.model.AdminVO"
-			alias="AdminVO" />
-		<typeAlias type="woo.cost.mgmt.businessCost.model.BusinessCostVO"
-			alias="BusinessCostVO" />
-		<typeAlias type="woo.cost.mgmt.client.model.CilentVO"
-			alias="CilentVO" />
+ 		<typeAlias type="woo.cost.mgmt.admin.model.AdminDTO"
+			alias="AdminDTO" />
+		<typeAlias type="woo.cost.mgmt.businessCost.model.BusinessCostDTO"
+			alias="BusinessCostDTO" />
+		<typeAlias type="woo.cost.mgmt.client.model.CilentDTO"
+			alias="CilentDTO" />
 	</typeAliases>
 </configuration>
   

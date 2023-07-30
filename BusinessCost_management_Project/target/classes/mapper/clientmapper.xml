@@ -3,11 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 네이스페이스의 기준은 패키지의 기준이다. = VO를 설정해주는게 좋다. -->
-<mapper namespace="woo.cost.mgmt.client.model.clientVO">
+<!-- 네이스페이스의 기준은 패키지의 기준이다. = DTO를 설정해주는게 좋다. -->
+<mapper namespace="woo.cost.mgmt.client.model.clientDTO">
 
 <!-- 참여자 정보 전체보기 -->
- <select id="#" parameterType="clientVO" resultType="clientVO">
+ <select id="clientSelectAll" parameterType="clientDTO" resultType="clientDTO">
 select 
     cm.clientnum,
     cm.totalclients,
@@ -35,7 +35,7 @@ group by
  
 
  <!-- 참여자 개인 정보 확인(및 그동안 지급한 임금 월별  확인) 리스트별로 보여지게 해야함 -->
- <select id="#" parameterType="clientVO" resultType="clientVO">
+ <select id="clientSelectDetail" parameterType="clientDTO" resultType="clientDTO">
     select 
     cm.totalClients,
     cm.clientName,
@@ -65,7 +65,7 @@ group by
 		(임금 / 참여자인원) 계산해서 totalIndividualSalary 에 insert하게 할거임(자바에서 구현할것) -->
 <!-- 2. 참여자 변경
 		할때도 여기로 오게 하기  그래야 중도참여자 정보 입력하면서  새로운 참여자가 입려되니까-->
- <insert id="#" parameterType="clientVO">
+ <insert id="clientInsert" parameterType="clientDTO">
 insert 
 into 
 	tbl_clientMember (clientNum, clientName ,clientBirthdate, participantStatus, 
@@ -81,7 +81,7 @@ values (
  <!-- 월별 지급액 입력 회원번호는 입력될때 내가 받아온걸 저장해도록 하자 그럴려면 로그인할때 스코프NUM으로 입력되도록 해야할까봐,,, 넘을 어떻게 하나하나 저장하지-->
  <!-- 아니면 어차피 이름, 생년월일은 보여지게 하고 임금만 입력하게 할거니가 셀렉트올로 값 반복해서 가져오게 하고, 입력하기,,, -->
  <!-- 인설트화면으로 넘어갈때 그냥 입력창으로만 넘어갔었는데 이거할때는 샐랙트올을 동작하고, 그다음 완료버튼 누르면 인설트쿼리문 동작하게 하면됨 -->
- <insert id="#" parameterType="clientVO">
+ <insert id="UsedClientWagesInsert" parameterType="clientDTO">
 insert 
 into 
 	tbl_usedClientWages (clientNum, usedClientWages, usedMonth) 
@@ -91,7 +91,7 @@ values (
 
 
  <!-- 참여자 활동중단할때 참여여부 수정 -->
- <update id="#" parameterType="clientVO">
+ <update id="participantStatusUpdate" parameterType="clientDTO">
 update
 	tbl_clientMember
 set

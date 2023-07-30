@@ -1,5 +1,19 @@
 package woo.cost.mgmt.admin.model;
 
+import java.util.List;
+
 public interface AdminDAO {
 
+	//담당자의 정보모두보기 메서드
+	public List<AdminDTO> adminSelectAll(String company);
+	
+	//담당자의 정보상세확인 메서드
+	public void adminSelectDetail(AdminDTO adminDTO);
+	
+	//담당자 회원가입 메서드
+	public void adminInsert(AdminDTO adminDTO);
+	
+	//회원정보 수정 메서드
+	public void adminUpdate(AdminDTO adminDTO);
+	
 }

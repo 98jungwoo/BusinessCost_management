@@ -3,11 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 네이스페이스의 기준은 패키지의 기준이다. = VO를 설정해주는게 좋다. 해가 지나가면 초기화되는거 가능?-->
-<mapper namespace="woo.cost.mgmt.businessCost.model.BusinessCostVO">
+<!-- 네이스페이스의 기준은 패키지의 기준이다. = DTO를 설정해주는게 좋다. 해가 지나가면 초기화되는거 가능?-->
+<mapper namespace="woo.cost.mgmt.businessCost.model.BusinessCostDTO">
 
 <!-- 처음 사용할때는 사업명, 참여인원, 총 사업비를 작성하도록 한다. 이게 내가 설정한 년도가 -->
-<insert id="BusinessCostTotalInsert" parameterType="BusinessCostVO">
+<insert id="businessCostTotalInsert" parameterType="BusinessCostDTO">
 insert 
 into 
 	tbl_businesscost (businesstype, totalclients ,totalbusinesscost) 
@@ -16,7 +16,7 @@ values
 </insert>
 
 <!-- 총 사업비 수정할수 있도록 설정 할까? -->
-<update id="BusinessCostTotalUpdate" parameterType="BusinessCostVO">
+<update id="businessCostTotalUpdate" parameterType="BusinessCostDTO">
 update tbl_businesscost
 set
 	totalbusinesscost=#{totalbusinesscost} 
@@ -26,7 +26,7 @@ where
 
 <!-- 처음시작할때 총사업비를 입력한 후, 비교를 위해 총사업비를 불러온다. + 메인 페이지에서 불러오게 할게   올해에 해당하는 내용만,,,? 해가 지나가면 초기화되는거 가능?-->
 <!-- progresspercentage 진행률 값임 -->
-<select id="BusinessCostselect" resultType="BusinessCostVO">
+<select id="businessCostselectAll" resultType="BusinessCostDTO">
 select 
     bc.businesstype, 
     bc.adminsalary, 
@@ -52,7 +52,7 @@ left join (
 
 <!-- 처음시작할때 총사업비를 입력한 후, 각각 세부사업비내용을 입력하도록 한다. -->
 <!-- 총 사업비와 각각저장한 사업비의 합이 같아야지만 넘어가게 하는건 자바스크립트에서하자-->
-<update id="BusinessCostDetailUpdate" parameterType="BusinessCostVO">
+<update id="businessCostDetailUpdate" parameterType="BusinessCostDTO">
 update tbl_businesscost
 set clientwages = 
     case
@@ -76,10 +76,10 @@ where businesstype in ('공익형', '시장형', '사회서비스형')
 </update>
 
 <!-- 사업비 진행현황 들어가면 사업종류 선택해서 월별로 임금, 담당임금, 진행비가 보여지며, 토탈 금액도 보여지게 할거임  (비지니스타입) 리스트로 불러오는거임-->
-<!-- 토탈은 jsp에서만 계산할수 잇는 방법이 있나? #{vo.usedclientWages + vo.usedadminSalary + vo.usedprojectExpense} 이렇게 하면 jsp에서만 토탈 보여지게할수 있음 -->
+<!-- 토탈은 jsp에서만 계산할수 잇는 방법이 있나? #{DTO.usedclientWages + DTO.usedadminSalary + DTO.usedprojectExpense} 이렇게 하면 jsp에서만 토탈 보여지게할수 있음 -->
 <!-- 자바스크립트로 할수잇는방법잇음 (total.jsp) 그거 참고하기 -->
-<!-- 그럼 VO를 DTO로 바꿔야하나 그럼 MVC모델이 맞나 ? -->
-<select id="monthUsedSelect" parameterType="BusinessCostVO" resultType="BusinessCostVO">
+<!-- 그럼 DTO를 DTO로 바꿔야하나 그럼 MVC모델이 맞나 ? -->
+<select id="monthUsedSelect" parameterType="BusinessCostDTO" resultType="BusinessCostDTO">
 select
     ubc.usedmonth,
     ubc.totalusedclientWages,
@@ -94,7 +94,7 @@ where
 </select>
 
 <!-- 사업비 진행현환들어가면 해당 사업종류 선택해서에서 해당 월 누르면 세부 내용 입력하도록할거임  (비지니스타입, 해달월) -->
-<update id="monthUsedUpdate" parameterType="BusinessCostVO" >
+<update id="monthUsedUpdate" parameterType="BusinessCostDTO" >
 update 
     tbl_usedbusinesscost ubc
 inner join 
