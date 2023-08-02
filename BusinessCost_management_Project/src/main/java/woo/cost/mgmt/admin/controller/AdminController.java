@@ -1,7 +1,5 @@
 package woo.cost.mgmt.admin.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,35 +22,39 @@ public class AdminController {
 	public final AdminServiceImp adminServiceImp;
 	
 	//담당자의 정보모두보기 메서드(String company)
+	@GetMapping("/adminSelectAll")
 	public String adminSelectAll(Model model, AdminDTO adminDTO) {
-		return null;
+		logger.info("■■■■■■ adminSelectAll 가 잘 들어왔나" + adminDTO.getCompany() + "■■■■■■" );
+		model.addAttribute("adminList", adminServiceImp.adminSelectAll(adminDTO.getCompany()));
+		return "./admin/admin_select_view";
 	}
 	
 	//담당자의 정보상세확인 메서드
+	@GetMapping("/AdminSelectDetail")
 	public String adminSelectDetail(Model model, AdminDTO adminDTO) {
 		return null;
 	}
 	
 	//담당자 회원가입 메서드
-	@GetMapping("/adminInsert")
+	@GetMapping("/AdminInsert")
 	public String adminInsert() {
 		return null;
 	}
 	
 	//담당자 회원가입 메서드
-	@PostMapping("/adminInsert")
+	@PostMapping("/AdminInsert")
 	public String adminInsert(AdminDTO adminDTO) {
 		return null;
 	}
 	
 	//회원정보 수정 메서드
-	@GetMapping("/adminUpdate")
+	@GetMapping("/AdminUpdate")
 	public String adminUpdate(Model model,AdminDTO adminDTO) {
 		return null;
 	}
 	
 	//회원정보 수정 메서드
-	@PostMapping("/adminUpdate")
+	@PostMapping("/AdminUpdate")
 	public String adminUpdate(AdminDTO adminDTO) {
 		return null;
 	}

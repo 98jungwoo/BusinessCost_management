@@ -24,8 +24,7 @@ public class AdminServiceImp implements AdminService{
 	//담당자의 정보모두보기 메서드
 	@Override
 	public List<AdminDTO> adminSelectAll(String company) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminDAO.adminSelectAll(company);
 	}
 
 

@@ -123,7 +123,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h3 class="text-muted">
-								<i class="fas fa-users-cog mr-sm-1"></i>회원 목록
+								<i class="fas fa-users-cog mr-sm-1"></i>노인일자리 담당자 목록
 							</h3>
 							<p align="right">전체 회원: ${memberCount}명</p>
 
@@ -132,33 +132,24 @@
 							<thead class="thead-light">
 								<tr class="text-center">
 									<th>번호</th>
-									<th>아이디</th>
-									<th>이름</th>
-									<th>이메일</th>
-									<th>나이</th>
-
-									<th>생일</th>
-									<th>가입일</th>
-									<th>성별</th>
+									<th>담당자명</th>
+									<th>생년월일</th>
+									<th>일자리담당 여부</th>
+									<th>사업</th>
+									<th>전화번호</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:choose>
 									<c:when test="${listCount > 0}">
-										<c:forEach var="arrayList" items="${arrayList}">
+										<c:forEach var="arrayList" items="${adminList}">
 											<tr class="text-center">
-												<td>${arrayList.num}</td>
-												<td><a href="./MemberSelectDetail.me?id=${arrayList.id}">${arrayList.id}</a></td>
-												<td><c:set var="now" value="<%=new java.util.Date()%>" /> <fmt:formatDate
-														var="nowDay" value="${now}" type="date" pattern="yyyy-MM-dd" /> <c:if
-														test="${arrayList.joinday == nowDay}">
-														<span class="badge badge-danger mr-sm-1"> new </span>
-													</c:if> ${arrayList.name}</td>
-												<td>${arrayList.email}</td>
-												<td>${arrayList.age}</td>
-												<td>${arrayList.birthday}</td>
-												<td>${arrayList.joinday}</td>
-												<td>${arrayList.gender}</td>
+												<td>${adminList.adminNum}</td>
+												<td><a href="./AdminSelectDetail?adminName=${adminList.adminName}">${adminList.adminName}</a></td>
+												<td>${adminList.adminBirthday}</td>
+												<td>${adminList.jobManager}</td>
+												<td>${adminList.businessType}</td>
+												<td>${adminList.adminPhonenum}</td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -170,42 +161,7 @@
 								</c:choose>
 							</tbody>
 						</table>
-						<nav class="ml-4">
-							<ul class="pagination justify-content-center">
-								<c:choose>
-									<c:when test="${page <= 1}">
-										<li class="page-item disabled"><a class="page-link">이전</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="page-item"><a href="./MemberSelect.me?page=${page-1}&limit=${limit}"
-											class="page-link">이전</a></li>
-									</c:otherwise>
-								</c:choose>
-								<c:forEach var="start" begin="${startpage}" end="${endpage}" step="1">
-									<c:choose>
-										<c:when test="${start==page}">
-											<li class="page-item active"><a class="page-link">${start}</a></li>
-										</c:when>
-										<c:otherwise>
-											<li class="page-item"><a href="./MemberSelect.me?page=${start}&limit=${limit}"
-												class="page-link">${start}</a></li>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-								<c:choose>
-									<c:when test="${page >= maxpage}">
-										<li class="page-item"><a class="page-link"> 다음 </a></li>
-									</c:when>
-									<c:otherwise>
-										<a href="./MemberSelect.me?page=${page+1}&limit=${limit}">
-											<li class="page-item"><a href="./MemberSelect.me?page=${page+1}&limit=${limit}"
-												class="page-link"> 다음 </a></li>
-										</a>
-									</c:otherwise>
-								</c:choose>
-							</ul>
 
-						</nav>
 						<nav class="navbar justify-content-end">
 							<div class="btn-group">
 								<button type="button" class="btn btn-outline-info mr-sm-1"

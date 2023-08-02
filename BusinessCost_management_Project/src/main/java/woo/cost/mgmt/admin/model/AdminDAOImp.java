@@ -20,8 +20,7 @@ public class AdminDAOImp implements AdminDAO{
 	//담당자의 정보모두보기 메서드
 	@Override
 	public List<AdminDTO> adminSelectAll(String company) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsessionTemplate.selectList("woo.cost.mgmt.admin.model.adminDTO.adminSelectAll", company);
 	}
 
 	//담당자의 정보상세확인 메서드
