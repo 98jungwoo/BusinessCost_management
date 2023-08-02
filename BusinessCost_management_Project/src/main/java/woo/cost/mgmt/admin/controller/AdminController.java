@@ -22,10 +22,11 @@ public class AdminController {
 	public final AdminServiceImp adminServiceImp;
 	
 	//담당자의 정보모두보기 메서드(String company)
-	@GetMapping("/adminSelectAll")
+	@GetMapping("/AdminSelectAll")
 	public String adminSelectAll(Model model, AdminDTO adminDTO) {
-		logger.info("■■■■■■ adminSelectAll 가 잘 들어왔나" + adminDTO.getCompany() + "■■■■■■" );
+		//logger.info("■■■■■■ adminSelectAll 가 잘 들어왔나" + adminDTO.getCompany() + "■■■■■■" );
 		model.addAttribute("adminList", adminServiceImp.adminSelectAll(adminDTO.getCompany()));
+		model.addAttribute("adminCount", adminServiceImp.adminCount());
 		return "./admin/admin_select_view";
 	}
 	

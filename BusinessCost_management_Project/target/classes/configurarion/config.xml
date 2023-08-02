@@ -9,8 +9,8 @@
 			alias="AdminDTO" />
 		<typeAlias type="woo.cost.mgmt.businessCost.model.BusinessCostDTO"
 			alias="BusinessCostDTO" />
-		<typeAlias type="woo.cost.mgmt.client.model.CilentDTO"
-			alias="CilentDTO" />
+		<typeAlias type="woo.cost.mgmt.client.model.ClientDTO"
+			alias="ClientDTO" />
 	</typeAliases>
 </configuration>
   

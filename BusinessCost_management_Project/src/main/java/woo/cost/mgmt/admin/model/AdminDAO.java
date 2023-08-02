@@ -13,7 +13,10 @@ public interface AdminDAO {
 	//담당자 회원가입 메서드
 	public void adminInsert(AdminDTO adminDTO);
 	
-	//회원정보 수정 메서드
+	//담당자 정보 수정 메서드
 	public void adminUpdate(AdminDTO adminDTO);
+
+	//담당자 인원 카운트
+	public int adminCount();
 	
 }

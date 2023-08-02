@@ -42,11 +42,16 @@ public class AdminServiceImp implements AdminService{
 		
 	}
 
-	//회원정보 수정 메서드
+	//담당자정보 수정 메서드
 	@Override
 	public void adminUpdate(AdminDTO adminDTO) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	//담당자 인원 카운트
+	@Override
+	public int adminCount() {
+		return adminDAO.adminCount();
+	}
 }

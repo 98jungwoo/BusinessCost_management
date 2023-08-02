@@ -44,4 +44,12 @@ public class AdminDAOImp implements AdminDAO{
 		
 	}
 
+	@Override
+	public int adminCount() {
+		
+		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.adminCount");
+	}
+	
+	
+
 }

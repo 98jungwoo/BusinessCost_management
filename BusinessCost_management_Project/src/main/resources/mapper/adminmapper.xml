@@ -13,8 +13,8 @@ select
     adminphonenum, userid, password
 from 
 	tbl_adminmember
-where 
-	company = #{company}
+<!-- where 
+	company = #{company} -->
  </select>
  
  <!-- 같은 회사안에서도 담당자의 정보를 상세하게 확인할수 있다. -->
@@ -51,5 +51,13 @@ update
 	where 
 		userid = #{userid}
 </update>
+
+
+<select id="adminCount" resultType="int">
+select 
+	count(*) 
+from 
+	tbl_adminmember
+ </select>
 
 </mapper>

@@ -72,12 +72,12 @@
 
 				<!-- 메뉴 로그인 담당자 정보 -->
 				<ul class="navbar-nav py-3 mb-3 pl-4 pr-3">
-					<li class="nav-item dropdown mr-3"><a href="./#"
+					<li class="nav-item dropdown mr-3"><a 
 						class="navbar-brand" data-toggle="dropdown">남정우(중랑노인복지관) </a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="./#"> 로그아웃 </a> <a
-								class="dropdown-item" href="./#?id=${sessionScope.id}">
-								개인정보변경 </a> <a class="dropdown-item" href="./#"> 담장자목록 </a>
+								class="dropdown-item" href="./AdminSelectDetail?userID=${sessionScope.userID}">
+								개인정보변경 </a> <a class="dropdown-item" href="./AdminSelectAll"> 담당자목록 </a>
 						</div>
 				</ul>
 			</div>
@@ -93,25 +93,10 @@
 	</nav>
 	
 	<header id="main-header" class="py-2 bg-secondary"> </header>
-	<section id="search" class="py-3 mb-3 bg-light">
+<section id="search" class="py-3 mb-3 bg-light">
 		<div class="container">
 			<div class="row col-md-12">
 				<div class="col-md-6 ml-auto">
-					<form action="./MemberSearch.me" method="post" name="searchForm" id="signupForm"
-						enctype="application/x-www-form-urlencoded">
-						<fieldset>
-							<div class="input-group">
-								<select name="limit" id="limit" class="form-control mr-sm-1">
-									<option value="10">10명씩 보기
-									<option value="20">20명씩 보기
-								</select> <input type="search" id="keyword" name="keyword" class="form-control mr-sm-1"
-									placeholder="아이디 입력">
-								<button class="btn btn-outline-success" type="submit">
-									<i class="fas fa-search mr-sm-1"></i>검색
-								</button>
-							</div>
-						</fieldset>
-					</form>
 				</div>
 			</div>
 		</div>
@@ -123,9 +108,10 @@
 					<div class="card">
 						<div class="card-header">
 							<h3 class="text-muted">
-								<i class="fas fa-users-cog mr-sm-1"></i>노인일자리 담당자 목록
+							<!-- 회사는 로그인한사람의 회사가 보여지게하기  -->
+								<i class="fas fa-users-cog mr-sm-1"></i>(중랑노인복지관)노인일자리 담당자 목록
 							</h3>
-							<p align="right">전체 회원: ${memberCount}명</p>
+							<p align="right">전체 담당자: ${adminCount}명</p>
 
 						</div>
 						<table class="table table-bordered">
@@ -141,11 +127,12 @@
 							</thead>
 							<tbody>
 								<c:choose>
-									<c:when test="${listCount > 0}">
-										<c:forEach var="arrayList" items="${adminList}">
+									<c:when test="${adminCount > 0}">
+										<c:forEach var="adminList" items="${adminList}">
 											<tr class="text-center">
 												<td>${adminList.adminNum}</td>
-												<td><a href="./AdminSelectDetail?adminName=${adminList.adminName}">${adminList.adminName}</a></td>
+							
+												<td><a href="./AdminSelectDetail?userID=${adminList.userID}">${adminList.adminName}</a></td>
 												<td>${adminList.adminBirthday}</td>
 												<td>${adminList.jobManager}</td>
 												<td>${adminList.businessType}</td>
@@ -165,8 +152,8 @@
 						<nav class="navbar justify-content-end">
 							<div class="btn-group">
 								<button type="button" class="btn btn-outline-info mr-sm-1"
-									onclick="location.href='./MemberInsertView.me'">
-									<i class="fas fa-user-edit mr-sm-1"></i>회원 등록
+									onclick="location.href='./AdminInsert'">
+									<i class="fas fa-user-edit mr-sm-1"></i>담당자 등록
 								</button>
 							</div>
 						</nav>

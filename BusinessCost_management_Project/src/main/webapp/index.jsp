@@ -18,24 +18,25 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white"><!-- 이거 색상을 검은색으로 바구고 싶어  -->
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
+		<!-- 이거 색상을 검은색으로 바구고 싶어  -->
 		<div class="container">
-			<div class="col-md-6">
-			</div>
+			<div class="col-md-6"></div>
 			<div class="d-flex justify-content-between">
-			<div id="toggle" class="navbar-collapse collapse">
-					<a href="./index.jsp" class="navbar-brand">남정우(중랑노인복지관)	</a>
-			</div>
+				<div id="toggle" class="navbar-collapse collapse">
+					<a href="./index.jsp" class="navbar-brand">남정우(중랑노인복지관) </a>
+				</div>
 			</div>
 		</div>
 	</nav>
 
-	<section id="actions" class="py-4 mb-4 bg-light"> <!-- 색상을 하얀색으로 바꾸고싶은데 아니면 이걸 지우고 여백을 만들거나 이거 지우면 버튼이 너무 위쪽으로 바로옴 -->
+	<section id="actions" class="py-4 mb-4 bg-light">
+		<!-- 색상을 하얀색으로 바꾸고싶은데 아니면 이걸 지우고 여백을 만들거나 이거 지우면 버튼이 너무 위쪽으로 바로옴 -->
 		<div class="container">
 			<div class="row"></div>
 		</div>
 	</section>
-	
+
 	<section id="posts">
 		<div class="container">
 
@@ -46,7 +47,9 @@
 					<div class="card text-center bg-primary text-white mb-3">
 						<div class="card-body">
 							<!-- 크기는 두고 배경 없에고, 태두리 검은색으로 바꾸기 -->
-							<h5><strong>공익형 (50,000,000)</strong></h5>
+							<h5>
+								<strong>공익형 (50,000,000)</strong>
+							</h5>
 							<table>
 								<thead style="display: none;">
 									<tr>
@@ -96,7 +99,9 @@
 				<div class="col-md-3">
 					<div class="card text-center bg-primary text-white mb-3">
 						<div class="card-body">
-							<h5><strong>시장형 (45,000,0000)</strong></h5>
+							<h5>
+								<strong>시장형 (45,000,0000)</strong>
+							</h5>
 							<table>
 								<thead style="display: none;">
 									<tr>
@@ -147,7 +152,9 @@
 				<div class="col-md-3">
 					<div class="card text-center bg-primary text-white mb-3">
 						<div class="card-body">
-							<h5><strong>사회서비스형 (0)</strong></h5>
+							<h5>
+								<strong>사회서비스형 (0)</strong>
+							</h5>
 							<table>
 								<thead style="display: none;">
 									<tr>
@@ -234,7 +241,7 @@
 								<i class="fas fa-user"></i>
 							</h4>
 							<button type="button" class="btn btn-outline-light btn-sm"
-								onclick="location.href='#'">클릭</button>
+								onclick="location.href='./AdminSelectAll'">클릭</button>
 						</div>
 					</div>
 				</div>
@@ -242,7 +249,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<footer id="main-footer" class="bg-secondary text-white mt-4 p-4">
 		<div class="container">
 			<div class="row">
