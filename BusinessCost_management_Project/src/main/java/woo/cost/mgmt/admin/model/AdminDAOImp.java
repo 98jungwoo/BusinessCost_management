@@ -25,9 +25,8 @@ public class AdminDAOImp implements AdminDAO{
 
 	//담당자의 정보상세확인 메서드
 	@Override
-	public void adminSelectDetail(AdminDTO adminDTO) {
-		// TODO Auto-generated method stub
-		
+	public AdminDTO adminSelectDetail(AdminDTO adminDTO) {
+		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.adminSelectDetail", adminDTO);
 	}
 
 	//담당자 회원가입 메서드

@@ -22,13 +22,13 @@
 <script src="./js/validity.js" type="text/javascript"></script>
 <script src="./js/bootstrap-datepicker.js"></script>
 <script src="./js/bootstrap-datepicker.ko.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function memberDelete() {
 		if (confirm("${memberDTO.name}님 회원을 탈퇴 하시겠습니까?")) {
 			location.href = "./MemberDelete.me?id=${memberDTO.id}"
 		}
 	}
-</script>
+</script> -->
 </head>
 <body>
 		<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
@@ -111,100 +111,66 @@
 							<div class="row">
 								<div class="col-11">
 									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fa fa-plus-square mr-sm-1"></i> 회원번호</li>
-										<li class="list-group-item col-md-5">${memberDTO.num}</li>
+										<li class="list-group-item col-md-2"><i class="fa fa-plus-square mr-sm-1"></i> 담당자 번호</li>
+										<li class="list-group-item col-md-5">${adminDTO.adminNum}</li>
 									</ul>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-11">
 									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fas fa-user-check mr-sm-1"></i> 아이디</li>
-										<li class="list-group-item col-md-5">${memberDTO.id}</li>
+										<li class="list-group-item col-md-2"><i class="fas fa-user-check mr-sm-1"></i> 담당자명</li>
+										<li class="list-group-item col-md-5">${adminDTO.adminName}</li>
 									</ul>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-11">
 									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fas fa-user-plus mr-sm-1"></i> 이름</li>
-										<li class="list-group-item col-md-5">${memberDTO.name}</li>
+										<li class="list-group-item col-md-2"><i class="fas fa-user-plus mr-sm-1"></i> 생년월일</li>
+										<li class="list-group-item col-md-5">${adminDTO.adminBirthday}</li>
 									</ul>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-11">
 									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fas fa-unlock-alt mr-sm-1"></i> 비밀번호</li>
-										<li class="list-group-item col-md-5">${memberDTO.password}</li>
+										<li class="list-group-item col-md-2"><i class="fas fa-unlock-alt mr-sm-1"></i> 일자리 담당여부</li>
+										<li class="list-group-item col-md-5">${adminDTO.jobManager}</li>
 									</ul>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-11">
 									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fas fa-envelope-open mr-sm-1"></i> 이메일
+										<li class="list-group-item col-md-2"><i class="fas fa-envelope-open mr-sm-1"></i> 사업
 										</li>
-										<li class="list-group-item col-md-5">${memberDTO.email}</li>
+										<li class="list-group-item col-md-5">${adminDTO.businessType}</li>
 									</ul>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-11">
 									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fas fa-user-clock mr-sm-1"></i> 나이</li>
-										<li class="list-group-item col-md-5">${memberDTO.age}</li>
+										<li class="list-group-item col-md-2"><i class="fas fa-user-clock mr-sm-1"></i> 전화번호</li>
+										<li class="list-group-item col-md-5">${adminDTO.adminPhonenum}</li>
 									</ul>
 								</div>
 								<p class="ml-sm-4"></p>
 								<div class="ml-sm-4 col-md-10"></div>
 							</div>
-							<div class="row">
-								<div class="col-11">
-									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fas fa-restroom mr-sm-1"></i> 성별</li>
-										<c:choose>
-											<c:when test="${memberDTO.gender == 'm'}">
-												<li class="list-group-item col-md-5">남자</li>
-											</c:when>
-											<c:otherwise>
-												<li class="list-group-item col-md-5">여성</li>
-											</c:otherwise>
-										</c:choose>
-									</ul>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-11">
-									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fas fa-birthday-cake mr-sm-1"></i> 생일
-										</li>
-										<li class="list-group-item col-md-5">${memberDTO.birthday}</li>
-									</ul>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-11">
-									<ul class="list-group list-group-horizontal">
-										<li class="list-group-item col-md-2"><i class="fa fa-calendar mr-sm-1"></i> 가입일</li>
-										<li class="list-group-item col-md-5">${memberDTO.joinday}</li>
-									</ul>
-								</div>
-							</div>
+							
+					
+							
 							<nav class="navbar justify-content-end">
 								<button type="button" class="btn btn-outline-secondary mr-sm-1"
-									onclick="location.href='./MemberUpdate.me?id=${memberDTO.id}'">
-									<i class="fas fa-user-tag mr-sm-1"></i> 회원 수정
+									onclick="location.href='./AdminUpdate?userID=${adminDTO.userID}'">
+									<i class="fas fa-user-tag mr-sm-1"></i> 담당자 정보수정
 								</button>
-								<button type="button" class="btn btn-outline-danger mr-sm-1" onclick="memberDelete()">
-									<i class="fas fa-user-times mr-sm-1"></i> 회원 탈퇴
-								</button>
-								<c:if test="${sessionScope.id == 'admin'}">
 									<button type="button" class="btn btn-outline-success mr-sm-1"
-										onclick="location.href='./MemberSelect.me'">
-										<i class="fas fa-users-cog mr-sm-1"></i> 회원 목록
+										onclick="location.href='./AdminSelectAll'">
+										<i class="fas fa-users-cog mr-sm-1"></i> 담당자 목록
 									</button>
-								</c:if>
 
 							</nav>
 						</div>

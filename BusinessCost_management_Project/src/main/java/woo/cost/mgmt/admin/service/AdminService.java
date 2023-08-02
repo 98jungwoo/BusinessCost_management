@@ -10,7 +10,7 @@ public interface AdminService {
 	List<AdminDTO> adminSelectAll(String company);
 	
 	//담당자의 정보상세확인 메서드
-	void adminSelectDetail(AdminDTO adminDTO);
+	AdminDTO adminSelectDetail(AdminDTO adminDTO);
 	
 	//담당자 회원가입 메서드
 	void adminInsert(AdminDTO adminDTO);

@@ -33,7 +33,8 @@ public class AdminController {
 	//담당자의 정보상세확인 메서드
 	@GetMapping("/AdminSelectDetail")
 	public String adminSelectDetail(Model model, AdminDTO adminDTO) {
-		return null;
+		model.addAttribute("adminDTO", adminServiceImp.adminSelectDetail(adminDTO));
+		return "./admin/admin_select_detail_view";
 	}
 	
 	//담당자 회원가입 메서드

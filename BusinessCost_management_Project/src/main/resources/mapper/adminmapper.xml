@@ -21,7 +21,7 @@ from
  <!-- 이건 jsp에서 하기 세션스코프세션아이디와 같아야지만 샐랙트디테일들어올수 있음-->
  <select id="adminSelectDetail" parameterType="adminDTO" resultType="adminDTO">
 select 
-	adminnum, company, adminname, adminbirthday, jobmanager, businesstype, 
+	adminnum, company, adminname, to_char(adminbirthday, 'yyyy-mm-dd')adminbirthday, jobmanager, businesstype, 
     adminphonenum, userid, password
 from 
 	tbl_adminmember

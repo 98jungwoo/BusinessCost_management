@@ -8,7 +8,7 @@ public interface AdminDAO {
 	public List<AdminDTO> adminSelectAll(String company);
 	
 	//담당자의 정보상세확인 메서드
-	public void adminSelectDetail(AdminDTO adminDTO);
+	public AdminDTO adminSelectDetail(AdminDTO adminDTO);
 	
 	//담당자 회원가입 메서드
 	public void adminInsert(AdminDTO adminDTO);
