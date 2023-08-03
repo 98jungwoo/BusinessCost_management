@@ -13,7 +13,8 @@ import woo.cost.mgmt.admin.model.AdminDTO;
 @Service
 public class AdminServiceImp implements AdminService{
 
-	//private static final Logger logger = LoggerFactory.getLogger(AdminServiceImp.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminServiceImp.class);
+	
 	private final AdminDAO adminDAO;
 	
 	@Autowired
@@ -24,6 +25,7 @@ public class AdminServiceImp implements AdminService{
 	//담당자의 정보모두보기 메서드
 	@Override
 	public List<AdminDTO> adminSelectAll(String company) {
+		logger.info("AdminServiceImp ■■■■■■ adminSelectAll 가 잘 들어왔나"+ "■■■■■■" );
 		return adminDAO.adminSelectAll(company);
 	}
 
@@ -51,6 +53,7 @@ public class AdminServiceImp implements AdminService{
 	//담당자 인원 카운트
 	@Override
 	public int adminCount() {
+		logger.info("AdminServiceImp ■■■■■■ adminCount 가 잘 들어왔나"+ "■■■■■■" );
 		return adminDAO.adminCount();
 	}
 }

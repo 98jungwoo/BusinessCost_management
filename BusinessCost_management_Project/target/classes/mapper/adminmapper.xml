@@ -21,24 +21,24 @@ from
  <!-- 이건 jsp에서 하기 세션스코프세션아이디와 같아야지만 샐랙트디테일들어올수 있음-->
  <select id="adminSelectDetail" parameterType="adminDTO" resultType="adminDTO">
 select 
-	adminnum, company, adminname, to_char(adminbirthday, 'yyyy-mm-dd')adminbirthday, jobmanager, businesstype, 
-    adminphonenum, userid, password
+	adminNum, company, adminName, to_char(adminBirthday, 'yyyy-mm-dd')adminBirthday, jobManager, businessType, 
+    adminPhonenum, userID, password
 from 
 	tbl_adminmember
 where 
-	userid = #{userid}
+	userID = #{userID}
  </select>
 
 <!-- 담당자 회원가입 -->
  <insert id="adminInsert" parameterType="adminDTO">
  insert 
  	into tbl_adminmember(
- 		adminnum, company, adminname, adminbirthday, jobmanager, businesstype, 
-    	adminphonenum, userid, password)
+ 		adminNum, company, adminName, adminBirthday, jobManager, businessType, 
+    	adminPhonenum, userID, password)
     valus(
-    	(select max(adminnum)+1 as adminnum from tbl_adminmember),
-   		 #{company}, #{adminname}, #{adminbirthday}, #{jobmanager}, #{businesstype}, 
-   		 #{adminphonenum}, #{userid}, #{password})
+    	(select max(adminNum)+1 as adminNum from tbl_adminmember),
+   		 #{company}, #{adminName}, #{adminBirthday}, #{jobManager}, #{businessType}, 
+   		 #{adminPhonenum}, #{userID}, #{password})
  </insert>
  
 <!-- 회원정보 수정 -->
@@ -46,18 +46,20 @@ where
 update 
 	tbl_adminmember
 	set
-		company, adminname, adminbirthday, jobmanager, businesstype, 
-    	adminphonenum, password
+		company, adminName, adminBirthday, jobManager, businessType, 
+    	adminPhonenum, password
 	where 
-		userid = #{userid}
+	userID = #{userID}
 </update>
 
-
+<!-- 담당자 인원 카운트하기 -->
 <select id="adminCount" resultType="int">
 select 
 	count(*) 
 from 
 	tbl_adminmember
+<!-- where 
+	company = #{company} -->
  </select>
 
 </mapper>

@@ -20,7 +20,7 @@
 
 		<!-- 배포할때 jdbc:oracle:thin:@127.0.0.1:1521:xe로 수정한다. --> <!-- 왜냐면 이렇게 하면 로그에서 표가 뜨는데 oracle로 쓰면 안나와 -->
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:xe" />
+			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="username" value="jung_jdbc" />
 		<property name="password" value="1234" />
 	</bean>

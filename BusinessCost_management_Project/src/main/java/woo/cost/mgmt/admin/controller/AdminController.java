@@ -24,8 +24,10 @@ public class AdminController {
 	//담당자의 정보모두보기 메서드(String company)
 	@GetMapping("/AdminSelectAll")
 	public String adminSelectAll(Model model, AdminDTO adminDTO) {
-		//logger.info("■■■■■■ adminSelectAll 가 잘 들어왔나" + adminDTO.getCompany() + "■■■■■■" );
+		logger.info("AdminController ■■■■■■ adminSelectAll 가 잘 들어왔나"+ "■■■■■■" );
 		model.addAttribute("adminList", adminServiceImp.adminSelectAll(adminDTO.getCompany()));
+		
+		//담당자 인원 카운트
 		model.addAttribute("adminCount", adminServiceImp.adminCount());
 		return "./admin/admin_select_view";
 	}
@@ -55,7 +57,7 @@ public class AdminController {
 		return null;
 	}
 	
-	//회원정보 수정 메서드
+	//담당자 정보 수정 메서드
 	@PostMapping("/AdminUpdate")
 	public String adminUpdate(AdminDTO adminDTO) {
 		return null;
