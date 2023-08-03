@@ -2854,8 +2854,8 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-	color: #007bff;
-	border-color: #007bff
+	color: #000000;
+/* 	border-color: #007bff  인설트에서 삭제함*/
 }
 
 .btn-outline-primary:hover {

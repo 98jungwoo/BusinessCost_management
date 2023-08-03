@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css"
 	href="./css/bootstrap.min_4.5.0.css">
 <link rel="stylesheet" href="./css/bootstrap-datepicker.css">
+
 <script src="./js/jquery-3.5.1.min.js" type="text/javascript"></script>
 <script src="./js/bootstrap.min_4.5.0.js" type="text/javascript"></script>
 <script src="./js/popper.min.js" type="text/javascript"></script>
@@ -25,19 +26,19 @@
 <script src="./js/bootstrap-datepicker.ko.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#birthday').datepicker({
+		$('#adminBirthday').datepicker({
 			format : "yyyymmdd",
-			autoclose : true,
-			daysOfWeekDisabled : [ 0, 6 ],
+			autoclose : true, /* 날짜 선택 시 날짜 선택기를 자동으로 닫습니다. */
+			daysOfWeekDisabled : [ 0, 6 ], /* 일요일(0) 및 토요일(6) 선택을 비활성화합니다 */
 			templates : {
 				leftArrow : '<i class="fa fa-caret-left"></i>',
 				rightArrow : '<i class="fa fa-caret-right"></i>'
 			},
-			showWeekDays : true,
-			todayHighlight : true,
-			toggleActive : true,
-			weekStart : 0,
-			language : "ko"
+			showWeekDays : true, /* datepicker 헤더에 요일을 표시합니다. */
+			todayHighlight : true,/* 현재 날짜를 강조 표시합니다. */
+			toggleActive : true, /* 선택한 날짜의 활성 상태를 토글합니다. */
+			weekStart : 0, /* 일요일(0)을 주의 첫 번째 요일로 설정합니다. */
+			language : "ko" /* 현지화를 위해 언어를 한국어로 설정합니다. */
 		});
 	});
 </script>
@@ -45,30 +46,30 @@
 	$(function() {
 
 		$("#dbidCheck").click(function() {
-			var id = $('#id').val();
+			var id = $('#userID').val();
 			$.ajax({
-				url : './IdCheck.me',
+				url : './IdCheck',
 				type : 'get',
 
 				data : {
-					id : id
+					userID: userID
 				},
 				success : function(result) {
-
+					/* result가 1이거나(중복되는거=값있는거), 1이 아니거나(사용가능한거=값 없는거) */
 					console.log("아이디 값 - " + result);
 					//alert(result);
 					if ($.trim(result) == 1) {
 						alert("이미 등록된 아이디입니다.");
-						$("#id").focus();
+						$("#userID").focus();
 					} else {
 						alert("등록할 수 있는 아이디입니다.");
 						$('#idCheck').val("1");
-						$("#name").focus();
+						$("#password").focus();
 					}
 				}
 			});
 		});
-		$("input[id='id']").on("change", function() {
+		$("input[id='userID']").on("change", function() {
 
 			$("#idCheck").val(0);
 
@@ -133,17 +134,17 @@
 			</div>
 		</div>
 	</nav>
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
+	<!-- 	<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
 		<div class="container">
-			<div class="col-md-3">
+			<div class="col-md-5">
 				<h1>담당자 회원가입</h1>
 			</div>
 
 		</div>
-	</nav>
-	
-	
-	
+	</nav> -->
+
+
+
 	<header id="main-header" class="py-2 bg-secondary"> </header>
 	<section class="py-3 mb-3 bg-light">
 		<div class="container">
@@ -156,96 +157,99 @@
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h2 class="text-center"> 2023년도 사업비를 작성해주세요
-							</h2>
+							<h1 class="text-center">담당자 회원가입</h1>
 						</div>
 						<div class="card-body mx-auto">
-							<form action="./MemberInsert.me" method="post" id="signupForm"
-								class="" enctype="application/x-www-form-urlencoded">
+							<form method="post" id="signupForm" class=""
+								enctype="application/x-www-form-urlencoded">
 								<fieldset>
-										<div class="col col-md-12">
-											<div class="form-group row">
-												<label for="id" class="col-4 col-form-label pr-0"> <i
-													class="fas fa-user-check mr-sm-1"></i> 아이디
-												</label>
-												<div class="col-8 pl-0">
-													<div class="row">
-														<div class="col-7">
-															<input type="text" name="id" id="id" class="form-control">
-														</div>
-														<div class="pl-0">
-															<button type="button" class="btn btn-outline-secondary"
-																id="dbidCheck">중복체크</button>
-															<input type="hidden" name="idCheck" id="idCheck">
-														</div>
+									<hr>
+									<div class="col col-md-12">
+										<div class="form-group row">
+											<label for="userID" class="col-4 col-form-label pr-0">
+												아이디 </label>
+											<div class="col-8 pl-0">
+												<div class="row">
+													<div class="col-7">
+														<input type="text" name="userID" id="userID"
+															class="form-control">
+													</div>
+													<div class="pl-0">
+<!-- 														<button type="button" class="btn btn-outline-secondary"
+															id="dbidCheck">중복체크</button> -->
+														<input type="button" class="btn btn-outline-secondary"
+															id="dbidCheck" value="중복체크">
+														<input type="hidden" name="idCheck" id="idCheck">
 													</div>
 												</div>
 											</div>
-											<div class="form-group row">
-												<label for="name" class="col-4 col-form-label pr-0">
-													<i class="fas fa-user-plus mr-sm-1"></i> 이름
-												</label>
-												<div class="col-8 pl-0">
-													<input type="text" name="name" id="name"
-														class="form-control">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="password" class="col-4 col-form-label pr-0">
-													<i class="fas fa-unlock-alt mr-sm-1"></i> 비밀번호
-												</label>
-												<div class="col-8 pl-0">
-													<input type="password" name="password" id="password"
-														class="form-control">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="pwdre" class="col-4 col-form-label pr-0">
-													<i class="fas fa-lock mr-sm-1"></i> 비번확인
-												</label>
-												<div class="col-8 pl-0">
-													<input type="password" name="pwdre" id="pwdre"
-														class="form-control">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="email" class="col-4 col-form-label pr-0">
-													<i class="fas fa-envelope-open mr-sm-1"></i> 이메일
-												</label>
-												<div class="col-8 pl-0">
-													<input type="email" name="email" id="email"
-														class="form-control">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="age" class="col-4 col-form-label pr-0">
-													<i class="fas fa-user-clock mr-sm-1"></i> 나이
-												</label>
-												<div class="col-8 pl-0">
-													<input type="text" name="age" id="age" class="form-control">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="gender" class="col-4 col-form-check-label pr-0">
-													<i class="fas fa-restroom mr-sm-1"></i> 성별
-												</label>
-												<div class="col-md-7 form-check form-check-inline text-left">
-													<input type="radio" name="gender" id="gender" value="m"
-														class="form-check-input"> 남자 <input type="radio"
-														name="gender" id="gender" value="f"
-														class="ml-sm-3 form-check-input"> 여자
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="birthday" class="col-4 col-form-label pr-0">
-													<i class="fas fa-birthday-cake mr-sm-2"></i> 생일
-												</label>
-												<div class="col-8 pl-0">
-													<input type="text" name="birthday" id="birthday"
-														class="form-control">
-												</div>
+										</div>
+										<div class="form-group row">
+											<label for="password" class="col-4 col-form-label pr-0">
+												비밀번호 </label>
+											<div class="col-8 pl-0">
+												<input type="password" name="password" id="password"
+													class="form-control">
 											</div>
 										</div>
+										<div class="form-group row">
+											<label for="pwdre" class="col-4 col-form-label pr-0">
+												비번확인 </label>
+											<div class="col-8 pl-0">
+												<input type="password" name="pwdre" id="pwdre"
+													class="form-control">
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label for="adminName" class="col-4 col-form-label pr-0">
+												담당자명 </label>
+											<div class="col-8 pl-0">
+												<input type="text" name="adminName" id="adminName"
+													class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="adminBirthday" class="col-4 col-form-label pr-0">
+												생년월일 </label>
+											<div class="col-8 pl-0">
+												<input type="text" name="adminBirthday" id="adminBirthday"
+													class="form-control">
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label for="adminPhonenum" class="col-4 col-form-label pr-0">
+												전화번호 </label>
+											<div class="col-8 pl-0">
+												<input type="text" name="adminPhonenum" id="adminPhonenum"
+													class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="company" class="col-4 col-form-label pr-0">
+												회사명 </label>
+											<div class="col-8 pl-0">
+												<input type="text" name="company" id="company"
+													class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="businessType" class="col-4 col-form-label pr-0">
+												사업 </label>
+											<div class="col-8 pl-0">
+												<select name="businessType" id="businessType"
+													class="form-control">
+													<option>담당사업을 선택하세요.</option>
+													<option value="공익형">공익형</option>
+													<option value="시장형">시장형</option>
+													<option value="사회서비스형">사회서비스형</option>
+												</select>
+											</div>
+										</div>
+
+									</div>
+									<hr>
 									<nav class="navbar justify-content-end">
 										<button type="submit" class="btn btn-outline-primary mr-sm-1">
 											<i class="fas fa-save mr-sm-1"></i> 회원 등록
@@ -263,7 +267,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<footer id="main-footer" class="bg-secondary text-white mt-4 p-4">
 		<div class="container">
 			<div class="row">

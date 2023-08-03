@@ -62,4 +62,13 @@ from
 	company = #{company} -->
  </select>
 
+<select id="IdCheck" resultType="boolean" parameterType="java.lang.String">
+select 
+	* 
+from 
+	tbl_adminmember
+where 
+	userID = #{userID}
+</select>
+
 </mapper>

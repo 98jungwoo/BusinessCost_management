@@ -56,4 +56,11 @@ public class AdminServiceImp implements AdminService{
 		logger.info("AdminServiceImp ■■■■■■ adminCount 가 잘 들어왔나"+ "■■■■■■" );
 		return adminDAO.adminCount();
 	}
+	
+	//아이디 중복체크
+	@Override
+	public int idCheck(String userID) {
+        logger.info("AdminServiceImp ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■");
+        return adminDAO.IdCheck(userID) ? 1 : 0;
+	}
 }

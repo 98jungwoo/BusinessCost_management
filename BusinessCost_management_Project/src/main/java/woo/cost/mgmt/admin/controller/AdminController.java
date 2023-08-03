@@ -42,13 +42,14 @@ public class AdminController {
 	//담당자 회원가입 메서드
 	@GetMapping("/AdminInsert")
 	public String adminInsert() {
-		return null;
+		return "./admin/admin_insert";
 	}
 	
 	//담당자 회원가입 메서드
 	@PostMapping("/AdminInsert")
 	public String adminInsert(AdminDTO adminDTO) {
-		return null;
+		adminServiceImp.adminInsert(adminDTO);
+		return "./admin/admin_insert_view";
 	}
 	
 	//회원정보 수정 메서드
@@ -63,4 +64,18 @@ public class AdminController {
 		return null;
 	}
 	
+//	//아이디 중복 체크
+//	@GetMapping("/IdCheck")
+//	public String IdCheck(Model model,AdminDTO adminDTO) {
+//		adminServiceImp.IdCheck(adminDTO.getUserID());
+//		return null;
+//	}
+	
+	@GetMapping("/IdCheck")
+	   public String idCheck(Model model, AdminDTO adminDTO) {
+		logger.info("AdminController ■■■■■■ IdCheck 가 잘 들어왔나"+ "■■■■■■" );
+	        int result = adminServiceImp.idCheck(adminDTO.getUserID());
+	        model.addAttribute("result", result);
+			return "./admin/admin_insert";
+	   }
 }

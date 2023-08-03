@@ -20,5 +20,8 @@ public interface AdminService {
 
 	//담당자 인원 카운트
 	int adminCount();
+
+	//아이디 중복 체크
+	int idCheck(String userID);
 	
 }
