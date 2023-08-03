@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:if test="${empty sessionScope.id}">
+<%-- <c:if test="${empty sessionScope.id}">
 	<script type="text/javascript">
 		location.href = "./LoginView.me"
 	</script>
-</c:if>
+</c:if> --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,7 +27,7 @@
 <script src="./js/bootstrap-datepicker.ko.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#birthday').datepicker({
+		$('#adminBirthday').datepicker({
 			format : "yyyymmdd",
 			autoclose : true,
 			daysOfWeekDisabled : [ 0, 6 ],
@@ -44,12 +44,15 @@
 	});
 </script>
 <script type="text/javascript">
+console.log("아이디가 왜 두번 찍히지" + ${adminDTO.userID});
+</script>
+<!-- <script type="text/javascript">
 	function memberDelete() {
 		if (confirm("${memberDTO.name}님 회원을 탈퇴 하시겠습니까?")) {
 			location.href = "./MemberDelete.me?id=${memberDTO.id}"
 		}
 	}
-</script>
+</script> -->
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
@@ -106,13 +109,13 @@
 	</nav>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
 		<div class="container">
-			<div class="col-md-3">
+			<div class="col-md-5">
 				<h1>담당자 정보 수정</h1>
 			</div>
 
 		</div>
 	</nav>
-	<header id="main-header" class="py-2 bg-secondary"> </header>
+	<header id="main-header" class="py-2 bg-secondary"></header>
 	<section class="py-3 mb-3 bg-light">
 		<div class="container">
 			<div class="row col-md-12"></div>
@@ -121,114 +124,135 @@
 	<section id="member">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-8 mx-auto">
 					<div class="card">
 						<div class="card-header">
 							<h3 class="text-muted">
-								<i class="fas fa-user-tag mr-sm-1"></i>회원 수정
+								<i class="fas fa-user-tag mr-sm-1"></i>담당자 정보수정
 							</h3>
 						</div>
 						<div class="card-body">
-							<form action="./MemberUpdateView.me" method="post"
-								id="signupForm" enctype="application/x-www-form-urlencoded">
+							<form method="post" id="signupForm"
+								enctype="application/x-www-form-urlencoded">
 								<fieldset>
 									<div class="row pl-1 pr-1">
-										<div class="col col-md-5">
-											<div class="form-group row">
-												<label for="id" class="col-4 col-form-label pr-0"><i
-													class="fas fa-user-check mr-sm-1"></i>아이디</label>
-												<div class="col-8 pl-0">
-													<input type="text" name="id" id="id"
-														class="form-control bg-white" value="${memberDTO.id}"
+										<div class="col col-md-12">
+<%-- 											<div class="row form-group">
+												<div class="col-md-12" id="id" style="display: none;">
+													<label class="member_label" for="adminNum">담당자 번호<em>*</em></label>
+													<input type="hidden" id="adminNum" name="adminNum"
+														class="form-control" value="${adminDTO.adminNum}">
+												</div>
+											</div> --%>
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="member_label" for="userID"> 아이디 </label> <input
+														type="text" name="userID" id="userID" class="form-control"
+														value="${adminDTO.userID}" readonly="readonly">
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="member_label" for="password"> 비밀번호 </label> <input
+														type="password" name="password" id="password"
+														class="form-control">
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="member_label" for="adminName">담당자명<em>*</em></label>
+													<input type="text" id="adminName" name="adminName"
+														class="form-control" value="${adminDTO.adminName}"
 														readonly>
 												</div>
 											</div>
-											<div class="form-group row">
-												<label for="name" class="col-4 col-form-label pr-0"><i
-													class="fas fa-user-plus mr-sm-1"></i>이름</label>
-												<div class="col-8 pl-0">
-													<input type="text" name="name" id="name"
-														class="form-control" value="${memberDTO.name}">
+
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="member_label" for="adminBirthday">생년월일</label>
+													<input type="date" name="adminBirthday" id="adminBirthday"
+														class="form-control" value="${adminDTO.adminBirthday}"
+														readonly>
 												</div>
 											</div>
-											<div class="form-group row">
-												<label for="password" class="col-4 col-form-label pr-0"><i
-													class="fas fa-unlock-alt mr-sm-1"></i>비밀번호</label>
-												<div class="col-8 pl-0">
-													<input type="password" name="password" id="password"
-														class="form-control">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="pwdre" class="col-4 col-form-label pr-0"><i
-													class="fas fa-lock mr-sm-1"></i>비번확인</label>
-												<div class="col-8 pl-0">
-													<input type="password" name="pwdre" id="pwdre"
-														class="form-control">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="email" class="col-4 col-form-label pr-0"><i
-													class="fas fa-envelope-open mr-sm-1"></i>이메일</label>
-												<div class="col-8 pl-0">
-													<input type="email" name="email" id="email"
-														class="form-control" value="${memberDTO.email}">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="age" class="col-4 col-form-label pr-0"><i
-													class="fas fa-user-clock mr-sm-1"></i>나이</label>
-												<div class="col-8 pl-0">
-													<input type="text" name="age" id="age" class="form-control"
-														value="${memberDTO.age}">
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="member_label" for="adminPhonenum">
+														전화번호</label> <input type="text" name="adminPhonenum"
+														id="adminPhonenum" class="form-control"
+														value="${adminDTO.adminPhonenum}">
 												</div>
 											</div>
 
 											<div class="form-group row">
-												<label for="gender" class="col-4 col-form-check-label pr-0"><i
-													class="fas fa-restroom mr-sm-1"></i>성별</label>
-												<div class="col-md-7 form-check form-check-inline text-left">
-													<input type="radio" name="gender" id="gender" value="m"
-														class="form-check-input"
-														<c:if test="${memberDTO.gender=='m'}">checked</c:if>>남자
-													<input type="radio" name="gender" id="gender" value="f"
-														class="ml-sm-3 form-check-input"
-														<c:if test="${memberDTO.gender=='f'}">checked</c:if>>여자
-												</div>
-											</div>
-											<div class="form-group row">
-												<label for="birthday" class="col-4 col-form-label pr-0"><i
-													class="fas fa-birthday-cake mr-sm-2"></i>생일</label>
+												<label for="company" class="col-4 col-form-label pr-0">회사
+												</label>
 												<div class="col-8 pl-0">
-													<input type="text" name="birthday" id="birthday"
-														class="form-control" value="${memberDTO.birthday}">
+													<input type="text" id="company" name="company"
+														class="form-control" value="${adminDTO.company}">
 												</div>
 											</div>
-										</div>
-									</div>
-									<nav class="navbar justify-content-end">
-										<button type="submit" class="btn btn-outline-primary mr-sm-1">
-											<i class="fas fa-save mr-sm-1"></i>회원 수정
-										</button>
-										<button type="reset" id="clear"
-											class="btn btn-outline-warning mr-sm-1">
-											<i class="fas fa-share-square mr-sm-1"></i>수정 취소
-										</button>
-										<button type="button" id="clear"
-											class="btn btn-outline-info mr-sm-1"
-											onclick="location.href='./MemberSelectDetail.me?id=${sessionScope.id}'">
-											<i class="fa fa-user mr-sm-1"></i>회원 정보
-										</button>
-										<!--            <button type="button" class="btn btn-outline-danger mr-sm-1" onclick="memberDelete()">
+
+
+											<div class="form-group row">
+												<label for="jobManager" class="col-4 col-form-label pr-0">
+													일자리담당 여부 </label>
+												<div class="col-8 pl-0">
+													<select name="jobManager" id="jobManager"
+														class="form-control">
+														<option value="${adminDTO.jobManager}">${adminDTO.jobManager}</option>
+														<option value="일자리담당">일자리담당</option>
+														<option value="퇴사/부서이동">퇴사/부서이동</option>
+													</select>
+												</div>
+											</div>
+
+											<div class="form-group row">
+												<label for="businessType" class="col-4 col-form-label pr-0">
+													사업 </label>
+												<div class="col-8 pl-0">
+													<select name="businessType" id="businessType"
+														class="form-control">
+														<option value="${adminDTO.businessType}">${adminDTO.businessType}</option>
+														<option value="공익형">공익형</option>
+														<option value="시장형">시장형</option>
+														<option value="사회서비스형">사회서비스형</option>
+													</select>
+												</div>
+											</div>
+
+											<nav class="navbar justify-content-end">
+												<button type="submit"
+													class="btn btn-outline-primary mr-sm-1">
+													<i class="fas fa-save mr-sm-1"></i>회원 수정
+												</button>
+												<button type="reset" id="clear"
+													class="btn btn-outline-warning mr-sm-1">
+													<i class="fas fa-share-square mr-sm-1"></i>수정 취소
+												</button>
+											<%-- <button type="button" id="clear"
+													class="btn btn-outline-info mr-sm-1"
+													onclick="location.href='./AdminSelectDetail?userID=${sessionScope.userID}'">
+													<i class="fa fa-user mr-sm-1"></i>회원 정보
+												</button>  --%>
+												<!-- <button type="button" class="btn btn-outline-danger mr-sm-1" onclick="memberDelete()">
          <i class="fas fa-user-times mr-sm-1"></i>회원 탈퇴
         </button> -->
-										<c:if test="${sessionScope.id == 'admin'}">
-											<button type="button" class="btn btn-outline-success mr-sm-1"
-												onclick="location.href='./MemberSelect.me'">
-												<i class="fas fa-users-cog mr-sm-1"></i> 회원 목록
-											</button>
-										</c:if>
-									</nav>
+												<c:if test="${sessionScope.id == 'admin'}">
+													<button type="button"
+														class="btn btn-outline-success mr-sm-1"
+														onclick="location.href='./MemberSelect.me'">
+														<i class="fas fa-users-cog mr-sm-1"></i> 회원 목록
+													</button>
+												</c:if>
+											</nav>
+										</div>
+									</div>
 								</fieldset>
 							</form>
 						</div>

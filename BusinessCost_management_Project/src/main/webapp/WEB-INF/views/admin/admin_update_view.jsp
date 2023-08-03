@@ -7,8 +7,8 @@
 </head>
 <body>
 <script type="text/javascript">
-alert("${memberDTO.id}님의 개인 정보를 수정하였습니다.")
-location.href="./MemberSelectDetail.me?id=${memberDTO.id}";
+alert("${adminDTO.userID}님의 개인 정보를 수정하였습니다.")
+location.href="./AdminSelectDetail?userID=${adminDTO.userID}";
 </script>
 </body>
 </html>

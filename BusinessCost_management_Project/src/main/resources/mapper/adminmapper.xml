@@ -53,10 +53,10 @@ where
 update 
 	tbl_adminmember
 	set
-		company, adminName, adminBirthday, jobManager, businessType, 
-    	adminPhonenum, password
+		company =#{company}, jobManager=#{jobManager}, businessType=#{businessType}, 
+    	adminPhonenum=#{adminPhonenum}, password=#{password} ,	userID = #{userID}
 	where 
-	userID = #{userID}
+		userID = #{userID}
 </update>
 
 <!-- 담당자 인원 카운트하기 -->

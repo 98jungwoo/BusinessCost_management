@@ -28,9 +28,9 @@ public class AdminDAOImp implements AdminDAO{
 
 	//담당자의 정보상세확인 메서드
 	@Override
-	public AdminDTO adminSelectDetail(AdminDTO adminDTO) {
-		logger.info("AdminDAOImp ■■■■■■ adminSelectDetail 가 잘 들어왔나"+ "■■■■■■" );
-		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.adminSelectDetail", adminDTO);
+	public AdminDTO adminSelectDetail(String userID) {
+		//logger.info("AdminDAOImp ■■■■■■ adminSelectDetail 가 잘 들어왔나"+ "■■■■■■" );
+		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.adminSelectDetail", userID);
 	}
 
 	//담당자 회원가입 메서드
@@ -42,7 +42,8 @@ public class AdminDAOImp implements AdminDAO{
 	//담당자 정보 수정 메서드
 	@Override
 	public void adminUpdate(AdminDTO adminDTO) {
-		// TODO Auto-generated method stub
+		// logger.info("AdminDAOImp ■■■■■■ adminUpdate 가 잘 들어왔나" + "■■■■■■"+ sqlsessionTemplate.update("woo.cost.mgmt.admin.model.adminDTO.adminUpdate", adminDTO));
+		sqlsessionTemplate.update("woo.cost.mgmt.admin.model.adminDTO.adminUpdate", adminDTO);
 		
 	}
 

@@ -160,7 +160,7 @@
 	<section id="member">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-8 mx-auto">
 					<div class="card">
 						<div class="card-header">
 							<h1 class="text-center">담당자 회원가입</h1>
@@ -260,7 +260,7 @@
 											</div>
 										</div>
 
-									</div>
+ 
 									<hr>
 									<nav class="navbar justify-content-end">
 										<button type="submit" class="btn btn-outline-primary mr-sm-1">
