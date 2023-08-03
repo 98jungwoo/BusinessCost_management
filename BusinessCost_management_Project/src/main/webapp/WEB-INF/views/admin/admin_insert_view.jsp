@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>담당자 회원가입</title>
   <script type="text/javascript">
-  alert("입력하신 ${id} 아이디로 가입 되었습니다.")
-  location.href="./LoginView.me"
+  alert("입력하신 ${adminDTO.userID} 아이디로 가입 되었습니다.")
+  location.href="./AdminSelectAll"
   </script>
  </head>
 <body>

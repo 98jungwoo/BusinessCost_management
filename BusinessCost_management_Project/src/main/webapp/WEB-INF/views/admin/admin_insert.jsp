@@ -21,7 +21,9 @@
 <script src="./js/bootstrap.min_4.5.0.js" type="text/javascript"></script>
 <script src="./js/popper.min.js" type="text/javascript"></script>
 <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="./js/validity.js" type="text/javascript"></script>
+
+<!-- <script src="./js/validity.js" type="text/javascript"></script> -->
+
 <script src="./js/bootstrap-datepicker.js"></script>
 <script src="./js/bootstrap-datepicker.ko.js"></script>
 <script type="text/javascript">

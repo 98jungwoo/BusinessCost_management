@@ -44,13 +44,15 @@ public class AdminController {
 	//담당자 회원가입 메서드
 	@GetMapping("/AdminInsert")
 	public String adminInsert() {
+		logger.info("■■■■■■AdminController ■■■get■■■ adminInsert 가 잘 들어왔나"+ "■■■■■■" );
 		return "./admin/admin_insert";
 	}
 	
 	//담당자 회원가입 메서드
 	@PostMapping("/AdminInsert")
-	public String adminInsert(AdminDTO adminDTO) {
+	public String adminInsert(Model model,AdminDTO adminDTO) {
 		adminServiceImp.adminInsert(adminDTO);
+		logger.info("■■■■■■AdminController ■■■Post■■■ adminInsert 가 잘 들어왔나"+ "■■■■■■" );
 		return "./admin/admin_insert_view";
 	}
 	
