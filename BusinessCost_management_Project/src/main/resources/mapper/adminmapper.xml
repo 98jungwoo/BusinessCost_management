@@ -9,12 +9,19 @@
 <!-- 나랑 회사가 같은 사람들만 리스트로 볼수 있게 한다. -->
  <select id="adminSelectAll" parameterType="adminDTO" resultType="adminDTO">
 select 
-	adminnum, company, adminname, adminbirthday, jobmanager, businesstype, 
-    adminphonenum, userid, password
+	adminNum, company, adminName, to_char(adminBirthday, 'yyyy-mm-dd')adminBirthday, jobManager, businessType, 
+    adminPhonenum, userID, password
 from 
 	tbl_adminmember
 <!-- where 
 	company = #{company} -->
+order by 
+	case
+		when jobManager = '일자리담당' then 1
+		when jobManager = '퇴사/부서이동' then 2
+	end,
+	adminNum desc
+
  </select>
  
  <!-- 같은 회사안에서도 담당자의 정보를 상세하게 확인할수 있다. -->
@@ -35,7 +42,7 @@ where
  	into tbl_adminmember(
  		adminNum, company, adminName, adminBirthday, jobManager, businessType, 
     	adminPhonenum, userID, password)
-    valus(
+    values(
     	(select max(adminNum)+1 as adminNum from tbl_adminmember),
    		 #{company}, #{adminName}, #{adminBirthday}, #{jobManager}, #{businessType}, 
    		 #{adminPhonenum}, #{userID}, #{password})

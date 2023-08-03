@@ -36,8 +36,7 @@ public class AdminDAOImp implements AdminDAO{
 	//담당자 회원가입 메서드
 	@Override
 	public void adminInsert(AdminDTO adminDTO) {
-		// TODO Auto-generated method stub
-		
+		sqlsessionTemplate.insert("woo.cost.mgmt.admin.model.adminDTO.adminInsert", adminDTO);
 	}
 
 	//담당자 정보 수정 메서드

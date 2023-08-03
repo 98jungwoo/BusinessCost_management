@@ -39,7 +39,7 @@ public class AdminServiceImp implements AdminService{
 	//담당자 회원가입 메서드
 	@Override
 	public void adminInsert(AdminDTO adminDTO) {
-		// TODO Auto-generated method stub
+		adminDAO.adminInsert(adminDTO);
 		
 	}
 

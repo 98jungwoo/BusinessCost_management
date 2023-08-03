@@ -22,7 +22,7 @@
 <script src="./js/popper.min.js" type="text/javascript"></script>
 <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
 
-<!-- <script src="./js/validity.js" type="text/javascript"></script> -->
+ <script src="./js/validity.js" type="text/javascript"></script>
 
 <script src="./js/bootstrap-datepicker.js"></script>
 <script src="./js/bootstrap-datepicker.ko.js"></script>
@@ -198,14 +198,6 @@
 													class="form-control">
 											</div>
 										</div>
-										<div class="form-group row">
-											<label for="pwdre" class="col-4 col-form-label pr-0">
-												비번확인 </label>
-											<div class="col-8 pl-0">
-												<input type="password" name="pwdre" id="pwdre"
-													class="form-control">
-											</div>
-										</div>
 
 										<div class="form-group row">
 											<label for="adminName" class="col-4 col-form-label pr-0">
@@ -240,6 +232,20 @@
 													class="form-control">
 											</div>
 										</div>
+										
+										<div class="form-group row">
+											<label for="jobManager" class="col-4 col-form-label pr-0">
+												일자리담당 여부 </label>
+											<div class="col-8 pl-0">
+												<select name="jobManager" id="jobManager"
+													class="form-control">
+													<option>일자리담당 여부를 선택하세요.</option>
+													<option value="일자리담당">일자리담당</option>
+													<option value="퇴사/부서이동">퇴사/부서이동</option>
+												</select>
+											</div>
+										</div>
+										
 										<div class="form-group row">
 											<label for="businessType" class="col-4 col-form-label pr-0">
 												사업 </label>
