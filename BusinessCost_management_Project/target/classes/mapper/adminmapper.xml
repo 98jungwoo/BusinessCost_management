@@ -62,9 +62,10 @@ from
 	company = #{company} -->
  </select>
 
+<!-- 논리식 "when count(*) > 0"이 참이면 1을 , 참이아니면 0을 반환한다. end 논리끝-->
 <select id="IdCheck" resultType="boolean" parameterType="java.lang.String">
-select 
-	* 
+select
+	case when count(*) > 0 then 1 else 0 end
 from 
 	tbl_adminmember
 where 

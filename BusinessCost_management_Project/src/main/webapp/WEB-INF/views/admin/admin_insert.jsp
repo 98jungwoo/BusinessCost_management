@@ -46,19 +46,23 @@
 	$(function() {
 
 		$("#dbidCheck").click(function() {
-			var id = $('#userID').val();
+			
+			var id = $('#userID').val();/* id="userID" 로 선언되어있는곳에서 입력한 값을  id(변수의 역할)로 저장한다.*/
+			
 			$.ajax({
 				url : './IdCheck',
 				type : 'get',
 
 				data : {
-					userID: userID
+					"userID": id /* 위에서  var id = $('#userID').val(); 이렇게 선언해줬던것을 userID로 선언해준거임*/
 				},
 				success : function(result) {
-					/* result가 1이거나(중복되는거=값있는거), 1이 아니거나(사용가능한거=값 없는거) */
-					console.log("아이디 값 - " + result);
+					
+					 console.log("아이디 값 - " + result);
+					
 					//alert(result);
-					if ($.trim(result) == 1) {
+					/* if ($.trim(result) == 1) { */  /* result가 1이거나(중복되는거=값있는거), 1이 아니거나(사용가능한거=값 없는거) */
+					 if (result == 1) {
 						alert("이미 등록된 아이디입니다.");
 						$("#userID").focus();
 					} else {
@@ -73,7 +77,7 @@
 
 			$("#idCheck").val(0);
 
-			//console.log("1111체크값 - " + $("#idCheck").val());
+			console.log("■■■■■ 체크값 - " + $("#idCheck").val());
 
 		});
 
@@ -177,8 +181,8 @@
 													<div class="pl-0">
 <!-- 														<button type="button" class="btn btn-outline-secondary"
 															id="dbidCheck">중복체크</button> -->
-														<input type="button" class="btn btn-outline-secondary"
-															id="dbidCheck" value="중복체크">
+														<button type="button" class="btn btn-outline-secondary"
+															id="dbidCheck">중복체크</button>
 														<input type="hidden" name="idCheck" id="idCheck">
 													</div>
 												</div>

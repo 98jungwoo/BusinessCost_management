@@ -22,7 +22,7 @@
 
 	<!-- Application Loggers -->
 	<!-- woo.cost.mgmt로 시작하는 패키지에 로그를 찍어볼수 있다. -->
-	<logger name="woo.spring.siksin">
+	<logger name="woo.cost.mgmt">
 		<level value="info" />
 	</logger>
 

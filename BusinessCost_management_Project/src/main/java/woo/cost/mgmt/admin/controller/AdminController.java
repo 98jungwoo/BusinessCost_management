@@ -24,11 +24,13 @@ public class AdminController {
 	//담당자의 정보모두보기 메서드(String company)
 	@GetMapping("/AdminSelectAll")
 	public String adminSelectAll(Model model, AdminDTO adminDTO) {
-		logger.info("AdminController ■■■■■■ adminSelectAll 가 잘 들어왔나"+ "■■■■■■" );
+		logger.info("■■■■■■AdminController ■■■■■■ adminSelectAll 가 잘 들어왔나"+ "■■■■■■" );
 		model.addAttribute("adminList", adminServiceImp.adminSelectAll(adminDTO.getCompany()));
 		
 		//담당자 인원 카운트
+		
 		model.addAttribute("adminCount", adminServiceImp.adminCount());
+		logger.info("■■■■■■AdminController ■■■■■■ adminSelectAll-adminCount 가 잘 들어왔나"+ "■■■■■■" );
 		return "./admin/admin_select_view";
 	}
 	
@@ -71,11 +73,14 @@ public class AdminController {
 //		return null;
 //	}
 	
-	@GetMapping("/IdCheck")
+@GetMapping("/IdCheck")
 	   public String idCheck(Model model, AdminDTO adminDTO) {
-		logger.info("AdminController ■■■■■■ IdCheck 가 잘 들어왔나"+ "■■■■■■" );
+		logger.info("AdminController ■■■■■■ IdCheck 가 잘 들어왔나"+ "■■■■■■" + adminServiceImp.idCheck(adminDTO.getUserID()));
+		
 	        int result = adminServiceImp.idCheck(adminDTO.getUserID());
+	        
 	        model.addAttribute("result", result);
+			logger.info("AdminController ■■■■■■ IdCheck result 가 잘 들어왔나"+ "■■■■■■" + result);
 			return "./admin/admin_insert";
 	   }
 }

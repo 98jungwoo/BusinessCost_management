@@ -57,7 +57,7 @@ public class AdminDAOImp implements AdminDAO{
 	//아이디 중복체크
     @Override
     public boolean IdCheck(String userID) {
-        logger.info("AdminDAOImp ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■");
+        logger.info("AdminDAOImp ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■"+ sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.IdCheck", userID));
         return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.IdCheck", userID);
     }
 

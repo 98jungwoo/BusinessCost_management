@@ -60,7 +60,7 @@ public class AdminServiceImp implements AdminService{
 	//아이디 중복체크
 	@Override
 	public int idCheck(String userID) {
-        logger.info("AdminServiceImp ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■");
+        logger.info("AdminServiceImp ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■"+ adminDAO.IdCheck(userID));
         return adminDAO.IdCheck(userID) ? 1 : 0;
 	}
 }
