@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
@@ -61,9 +62,10 @@ public class AdminController {
 		return "./admin/admin_insert_view";
 	}
 
-	// 회원정보 수정 메서드
+	// 담당자 정보 수정 메서드
 	@GetMapping("/AdminUpdate")
 	public String adminUpdate(Model model, AdminDTO adminDTO) {
+		logger.info("■■■■■■AdminController ■■■Get■■■ adminUpdate 가 잘 들어왔나" + "■■■■■■");
 		model.addAttribute("adminDTO", adminServiceImp.adminSelectDetail(adminDTO.getUserID()));
 		return "./admin/admin_update";
 	}
@@ -71,9 +73,8 @@ public class AdminController {
 	// 담당자 정보 수정 메서드
 	@PostMapping("/AdminUpdate")
 	public String adminUpdate(AdminDTO adminDTO) {
-		
+		logger.info("■■■■■■AdminController ■■■Post■■■ adminUpdate 가 잘 들어왔나" + "■■■■■■");
 		adminServiceImp.adminUpdate(adminDTO);
-		
 		return "./admin/admin_update_view";
 	}
 

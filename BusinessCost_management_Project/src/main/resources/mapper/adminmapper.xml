@@ -53,8 +53,8 @@ where
 update 
 	tbl_adminmember
 	set
-		company =#{company}, jobManager=#{jobManager}, businessType=#{businessType}, 
-    	adminPhonenum=#{adminPhonenum}, password=#{password} ,	userID = #{userID}
+		userID = #{userID}, password=#{password}, adminName=#{adminName}, adminBirthday=#{adminBirthday}, adminPhonenum=#{adminPhonenum},
+		company =#{company},  jobManager=#{jobManager},businessType=#{businessType}
 	where 
 		userID = #{userID}
 </update>

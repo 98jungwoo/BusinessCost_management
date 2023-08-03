@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>담장자 정보 수정</title>
+<title>담당자 정보 수정</title>
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="./css/global.css">
 <link rel="stylesheet" type="text/css" href="./css/all.min.css">
@@ -137,22 +137,21 @@ console.log("아이디가 왜 두번 찍히지" + ${adminDTO.userID});
 								<fieldset>
 									<div class="row pl-1 pr-1">
 										<div class="col col-md-12">
-<%-- 											<div class="row form-group">
+											<div class="row form-group">
 												<div class="col-md-12" id="id" style="display: none;">
 													<label class="member_label" for="adminNum">담당자 번호<em>*</em></label>
 													<input type="hidden" id="adminNum" name="adminNum"
 														class="form-control" value="${adminDTO.adminNum}">
 												</div>
-											</div> --%>
+											</div>
 
 											<div class="row form-group">
 												<div class="col-md-12">
 													<label class="member_label" for="userID"> 아이디 </label> <input
-														type="text" name="userID" id="userID" class="form-control"
+														type="text" class="form-control"
 														value="${adminDTO.userID}" readonly="readonly">
 												</div>
 											</div>
-
 											<div class="row form-group">
 												<div class="col-md-12">
 													<label class="member_label" for="password"> 비밀번호 </label> <input
@@ -235,7 +234,7 @@ console.log("아이디가 왜 두번 찍히지" + ${adminDTO.userID});
 													class="btn btn-outline-warning mr-sm-1">
 													<i class="fas fa-share-square mr-sm-1"></i>수정 취소
 												</button>
-											<%-- <button type="button" id="clear"
+												<%-- <button type="button" id="clear"
 													class="btn btn-outline-info mr-sm-1"
 													onclick="location.href='./AdminSelectDetail?userID=${sessionScope.userID}'">
 													<i class="fa fa-user mr-sm-1"></i>회원 정보

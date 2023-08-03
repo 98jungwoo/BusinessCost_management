@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>담장자 정보 확인</title>
+<title>담당자 정보 확인</title>
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="./css/global.css">
 <link rel="stylesheet" type="text/css" href="./css/all.min.css">
@@ -130,6 +130,22 @@
 										readonly>
 								</div>
 							</div>
+							
+														<div class="row form-group">
+								<div class="col-md-12">
+									<label class="member_label" for="adminPhonenum"> 전화번호</label> <input
+										type="text" name="adminPhonenum" id="adminPhonenum"
+										class="form-control" value="${adminDTO.adminPhonenum}"
+										readonly>
+								</div>
+							</div>
+								<div class="row form-group">
+								<div class="col-md-12">
+									<label class="member_label" for="company">회사</label>
+									<input type="text" id="company" name="company"
+										class="form-control" value="${adminDTO.company}" readonly>
+								</div>
+							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label class="member_label" for="jobManager">일자리 담당여부<em>*</em></label>
@@ -144,14 +160,7 @@
 										class="form-control" value="${adminDTO.businessType}" readonly>
 								</div>
 							</div>
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label class="member_label" for="adminPhonenum"> 전화번호</label> <input
-										type="text" name="adminPhonenum" id="adminPhonenum"
-										class="form-control" value="${adminDTO.adminPhonenum}"
-										readonly>
-								</div>
-							</div>
+
 							<hr>
 							<div class="form-group">
 								<nav class="navbar justify-content-end">

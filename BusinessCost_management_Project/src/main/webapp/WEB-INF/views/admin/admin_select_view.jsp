@@ -146,6 +146,7 @@
 									<th>번호</th>
 									<th>담당자명</th>
 									<th>생년월일</th>
+									<th>회사</th>
 									<th>일자리담당 여부</th>
 									<th>사업</th>
 									<th>전화번호</th>
@@ -163,6 +164,7 @@
 												<td><a
 													href="./AdminSelectDetail?userID=${adminList.userID}">${adminList.adminName}</a></td>
 												<td>${adminList.adminBirthday}</td>
+												<td>${adminList.company}</td>
 												<td>${adminList.jobManager}</td>
 												<td>${adminList.businessType}</td>
 												<td>${adminList.adminPhonenum}</td>
