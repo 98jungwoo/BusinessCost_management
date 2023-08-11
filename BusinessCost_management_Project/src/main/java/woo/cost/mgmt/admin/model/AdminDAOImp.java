@@ -53,12 +53,20 @@ public class AdminDAOImp implements AdminDAO{
 		logger.info("AdminDAOImp ■■■■■■ adminCount 가 잘 들어왔나"+ "■■■■■■" );
 		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.adminCount");
 	}
-	
+
 	//아이디 중복체크
-    @Override
-    public boolean IdCheck(String userID) {
-        logger.info("AdminDAOImp ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■"+ sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.IdCheck", userID));
-        return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.IdCheck", userID);
-    }
+//    @Override
+//    public boolean IdCheck(String userID) {
+//        logger.info("AdminDAOImp ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■"+ sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.IdCheck", userID));
+//        return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.IdCheck", userID);
+//    }
+	
+
+	//아이디 중복체크
+	@Override
+	public int IdCheck(AdminDTO adminDTO) {
+		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.IdCheck", adminDTO);
+	}
+	
 
 }

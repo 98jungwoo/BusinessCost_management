@@ -1,5 +1,11 @@
 package woo.cost.mgmt.admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import woo.cost.mgmt.admin.model.AdminDTO;
@@ -78,15 +89,46 @@ public class AdminController {
 		return "./admin/admin_update_view";
 	}
 
-	@GetMapping("/IdCheck")
-	public String idCheck(Model model, AdminDTO adminDTO) {
-		logger.info(
-				"AdminController ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■" + adminServiceImp.idCheck(adminDTO.getUserID()));
-
-		int result = adminServiceImp.idCheck(adminDTO.getUserID());
-
-		model.addAttribute("result", result);
-		logger.info("AdminController ■■■■■■ IdCheck result 가 잘 들어왔나" + "■■■■■■" + result);
-		return "./admin/admin_insert";
+//	@GetMapping("/IdCheck")
+//	public String idCheck(Model model, AdminDTO adminDTO) {
+//		logger.info(
+//				"AdminController ■■■■■■ IdCheck 가 잘 들어왔나" + "■■■■■■" + adminServiceImp.idCheck(adminDTO.getUserID()));
+//
+//		int result = adminServiceImp.idCheck(adminDTO.getUserID());
+//
+//		model.addAttribute("result", result);
+//		logger.info("AdminController ■■■■■■ IdCheck result 가 잘 들어왔나" + "■■■■■■" + result);
+//		return "./admin/admin_insert";
+//	}
+	
+	@PostMapping("/IdCheck")
+	@ResponseBody
+	public String idCheck(Model model, @RequestBody String filterJSON, HttpServletResponse response) throws Exception {
+		JSONObject resObject= new JSONObject();
+		
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			AdminDTO adminDTO = (AdminDTO) mapper.readValue(filterJSON, new TypeReference<AdminDTO>() {
+			});
+		
+		int idCheck = adminServiceImp.idCheck(adminDTO);
+		logger.info("AdminController ■■■■■■ IdCheck idcheck 가 잘 들어왔나" + "■■■■■■" + idCheck);
+		
+		resObject.put("res", "ok");
+		resObject.put("idCheck", idCheck); //idCheck라는 key에는 1 or 0 이 담긴다. 매퍼에서 그렇게 결과가 출력됨
+		
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			// idCheck가 1 or 0이 아니면  resObject에  {"res":"error"} 라는게 담긴다.
+			resObject.put("res", "error");
+		}
+		
+		// resObject.put("idCheck", idCheck); resObject에 idCheck 값을 넣었기 때문에 로그로 찍어보는건 resObject이걸 찍어보는거야
+		logger.info("AdminController ■■■■■■ IdCheck메서드에서 idCheck확인하려고 resObject 확인해본거임" + resObject);
+		response.setContentType("text/html: charset = UTF-8");
+		PrintWriter printWriter = response.getWriter();
+		printWriter.print(resObject);
+		
+		return null;
 	}
 }

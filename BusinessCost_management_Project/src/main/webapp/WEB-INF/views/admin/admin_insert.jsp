@@ -22,7 +22,7 @@
 <script src="./js/popper.min.js" type="text/javascript"></script>
 <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
 
- <script src="./js/validity.js" type="text/javascript"></script>
+<script src="./js/validity.js" type="text/javascript"></script>
 
 <script src="./js/bootstrap-datepicker.js"></script>
 <script src="./js/bootstrap-datepicker.ko.js"></script>
@@ -44,27 +44,28 @@
 		});
 	});
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function() {
 
 		$("#dbidCheck").click(function() {
-			
+
 			var id = $('#userID').val();/* id="userID" 로 선언되어있는곳에서 입력한 값을  id(변수의 역할)로 저장한다.*/
-			
+
 			$.ajax({
 				url : './IdCheck',
 				type : 'get',
 
 				data : {
-					"userID": id /* 위에서  var id = $('#userID').val(); 이렇게 선언해줬던것을 userID로 선언해준거임*/
+					"userID" : id
+				/* 위에서  var id = $('#userID').val(); 이렇게 선언해줬던것을 userID로 선언해준거임*/
 				},
 				success : function(result) {
-					
-					 console.log("아이디 값 - " + result);
-					
+
+					console.log("아이디 값 - " + result);
+
 					//alert(result);
-					/* if ($.trim(result) == 1) { */  /* result가 1이거나(중복되는거=값있는거), 1이 아니거나(사용가능한거=값 없는거) */
-					 if (result == 1) {
+					/* if ($.trim(result) == 1) { *//* result가 1이거나(중복되는거=값있는거), 1이 아니거나(사용가능한거=값 없는거) */
+					if (result == 1) {
 						alert("이미 등록된 아이디입니다.");
 						$("#userID").focus();
 					} else {
@@ -84,6 +85,39 @@
 		});
 
 	});
+</script> -->
+
+<script type="text/javascript">
+	function duplicate() {
+		var userID = $("#userID").val();
+
+		var submitObj = new Object();
+		submitObj.userID = userID;
+
+		$.ajax({
+			url : "./IdCheck",
+			type : "POST",
+			contentType : "application/json; charset-UTF-8",
+			data : JSON.stringify(submitObj),
+			dataType : "json"
+		}).done(function(resObject) {
+			if (resObject.res == "ok") {
+				if (resObject.idCheck == 0) {
+					alert("사용할 수 있는 아이디입니다.");
+					$("#userID_yn").val("Y");
+				} else {
+					alert("중복된 아이디 입니다.");
+					$("#userID_yn").val("N");
+				}
+			}
+
+		}).fail(function(e) {
+			alert("등록 시도에 실패하였습니다." + e);
+		}).always(function() {
+			pass = false;
+		});
+
+	}
 </script>
 </head>
 <body>
@@ -168,6 +202,7 @@
 						<div class="card-body mx-auto">
 							<form method="post" id="signupForm" class=""
 								enctype="application/x-www-form-urlencoded">
+								<input type="hidden" id="userID_yn" name="userID_yn" value="N"/>
 								<fieldset>
 									<hr>
 									<div class="col col-md-12">
@@ -180,87 +215,101 @@
 														<input type="text" name="userID" id="userID"
 															class="form-control">
 													</div>
-													<div class="pl-0">
-<!-- 														<button type="button" class="btn btn-outline-secondary"
-															id="dbidCheck">중복체크</button> -->
+													<!-- <div class="pl-0">
+														<button type="button" class="btn btn-outline-secondary"
+															id="dbidCheck">중복체크</button>
 														<button type="button" class="btn btn-outline-secondary"
 															id="dbidCheck">중복체크</button>
 														<input type="hidden" name="idCheck" id="idCheck">
+													</div> -->
+
+													<div class="col-sm-4 mb-3 mb-sm-0">
+														<a href="#" class="btn btn-success btn-icon-split"
+															style="text-align: center;"
+															onclick="duplicate(); return false;"> <span
+															class="icon text-white-30"> <i
+																class="fas fa-check"></i>
+
+														</span> <span class="text">중복체크</span>
+														</a>
 													</div>
+
+
 												</div>
 											</div>
 										</div>
-										<div class="form-group row">
-											<label for="password" class="col-4 col-form-label pr-0">
-												비밀번호 </label>
-											<div class="col-8 pl-0">
-												<input type="password" name="password" id="password"
-													class="form-control">
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="password" class="col-4 col-form-label pr-0">
+											비밀번호 </label>
+										<div class="col-8 pl-0">
+											<input type="password" name="password" id="password"
+												class="form-control">
 										</div>
+									</div>
 
-										<div class="form-group row">
-											<label for="adminName" class="col-4 col-form-label pr-0">
-												담당자명 </label>
-											<div class="col-8 pl-0">
-												<input type="text" name="adminName" id="adminName"
-													class="form-control">
-											</div>
+									<div class="form-group row">
+										<label for="adminName" class="col-4 col-form-label pr-0">
+											담당자명 </label>
+										<div class="col-8 pl-0">
+											<input type="text" name="adminName" id="adminName"
+												class="form-control">
 										</div>
-										<div class="form-group row">
-											<label for="adminBirthday" class="col-4 col-form-label pr-0">
-												생년월일 </label>
-											<div class="col-8 pl-0">
-												<input type="text" name="adminBirthday" id="adminBirthday"
-													class="form-control">
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="adminBirthday" class="col-4 col-form-label pr-0">
+											생년월일 </label>
+										<div class="col-8 pl-0">
+											<input type="text" name="adminBirthday" id="adminBirthday"
+												class="form-control">
 										</div>
+									</div>
 
-										<div class="form-group row">
-											<label for="adminPhonenum" class="col-4 col-form-label pr-0">
-												전화번호 </label>
-											<div class="col-8 pl-0">
-												<input type="text" name="adminPhonenum" id="adminPhonenum"
-													class="form-control">
-											</div>
+									<div class="form-group row">
+										<label for="adminPhonenum" class="col-4 col-form-label pr-0">
+											전화번호 </label>
+										<div class="col-8 pl-0">
+											<input type="text" name="adminPhonenum" id="adminPhonenum"
+												class="form-control">
 										</div>
-										<div class="form-group row">
-											<label for="company" class="col-4 col-form-label pr-0">
-												회사명 </label>
-											<div class="col-8 pl-0">
-												<input type="text" name="company" id="company"
-													class="form-control">
-											</div>
+									</div>
+									<div class="form-group row">
+										<label for="company" class="col-4 col-form-label pr-0">
+											회사명 </label>
+										<div class="col-8 pl-0">
+											<input type="text" name="company" id="company"
+												class="form-control">
 										</div>
-										
-										<div class="form-group row">
-											<label for="jobManager" class="col-4 col-form-label pr-0">
-												일자리담당 여부 </label>
-											<div class="col-8 pl-0">
-												<select name="jobManager" id="jobManager"
-													class="form-control">
-													<option>일자리담당 여부를 선택하세요.</option>
-													<option value="일자리담당">일자리담당</option>
-													<option value="퇴사/부서이동">퇴사/부서이동</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="form-group row">
-											<label for="businessType" class="col-4 col-form-label pr-0">
-												사업 </label>
-											<div class="col-8 pl-0">
-												<select name="businessType" id="businessType"
-													class="form-control">
-													<option>담당사업을 선택하세요.</option>
-													<option value="공익형">공익형</option>
-													<option value="시장형">시장형</option>
-													<option value="사회서비스형">사회서비스형</option>
-												</select>
-											</div>
-										</div>
+									</div>
 
- 
+									<div class="form-group row">
+										<label for="jobManager" class="col-4 col-form-label pr-0">
+											일자리담당 여부 </label>
+										<div class="col-8 pl-0">
+											<select name="jobManager" id="jobManager"
+												class="form-control">
+												<option>일자리담당 여부를 선택하세요.</option>
+												<option value="일자리담당">일자리담당</option>
+												<option value="퇴사/부서이동">퇴사/부서이동</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="businessType" class="col-4 col-form-label pr-0">
+											사업 </label>
+										<div class="col-8 pl-0">
+											<select name="businessType" id="businessType"
+												class="form-control">
+												<option>담당사업을 선택하세요.</option>
+												<option value="공익형">공익형</option>
+												<option value="시장형">시장형</option>
+												<option value="사회서비스형">사회서비스형</option>
+											</select>
+										</div>
+									</div>
+
+
 									<hr>
 									<nav class="navbar justify-content-end">
 										<button type="submit" class="btn btn-outline-primary mr-sm-1">
@@ -273,7 +322,7 @@
 									</nav>
 								</fieldset>
 							</form>
-						</div>
+						</div> <!-- class="card-body mx-auto" 종료 -->
 					</div>
 				</div>
 			</div>

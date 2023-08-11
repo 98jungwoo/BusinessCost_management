@@ -26,4 +26,6 @@
 	
 	<context:component-scan base-package="woo.cost.mgmt" />
 	
+	
+	
 </beans:beans>

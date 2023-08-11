@@ -20,7 +20,7 @@ public interface AdminDAO {
 	public int adminCount();
 
 	//아이디 중복체크
-	boolean IdCheck(String userID);
+	public int IdCheck(AdminDTO adminDTO);
 
 
 	
