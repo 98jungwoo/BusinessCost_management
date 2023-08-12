@@ -103,11 +103,14 @@ public class AdminController {
 	
 	@PostMapping("/IdCheck")
 	@ResponseBody
+	//클라이언트에서 받은 json데이터를 받아서 중복체크
 	public String idCheck(Model model, @RequestBody String filterJSON, HttpServletResponse response) throws Exception {
 		JSONObject resObject= new JSONObject();
 		
 		try {
 			ObjectMapper mapper = new ObjectMapper();
+			// @RequestBody 어노테이션을 사용하여 클라이언트에서 받은 JSON 데이터를 filterJSON 문자열로 저장. 
+			// ObjectMapper를 사용하여 filterJSON을 AdminDTO 객체로 변환합니다.
 			AdminDTO adminDTO = (AdminDTO) mapper.readValue(filterJSON, new TypeReference<AdminDTO>() {
 			});
 		
