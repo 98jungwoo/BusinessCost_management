@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>어깨동무 게시판</title>
-<c:choose>
+<title>로그인</title>
+<%-- <c:choose>
 	<c:when test="${memberDTO.id == ''}">
 		<script type="text/javascript">
 			alert("가입되지 않은 아이디입니다.")
@@ -23,6 +24,16 @@
 			location.href="./BoardSelect.do"
 		</script>
 	</c:otherwise>
+</c:choose> --%>
+
+<c:choose>
+	<c:when test="${empty adminDTO}">
+            alert("가입되지 않은 아이디입니다.");
+            history.back();
+        </c:when>
+	<c:otherwise>
+            location.href="./index.jsp";
+        </c:otherwise>
 </c:choose>
 </head>
 <body>

@@ -15,8 +15,15 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-	
-		<!-- ■■■■ json관련 라이브러리 ■■■■-->
+
+		<!-- ■■■■ 로그인에서 비밀번호 암호화하는 라이브러리 ■■■■ -->
+		<dependency>
+		<groupId>org.mindrot</groupId>
+		<artifactId>jbcrypt</artifactId>
+		<version>0.4</version>
+		</dependency>
+
+		<!-- ■■■■ json관련 라이브러리 ■■■■ -->
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 			<groupId>org.json</groupId>
@@ -37,7 +44,7 @@
 		</dependency>
 
 
-		<!--■■■■ jquery관련 라이브러리 ■■■■-->
+		<!--■■■■ jquery관련 라이브러리 ■■■■ -->
 		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
@@ -51,7 +58,7 @@
 			<version>2.0.1.Final</version>
 		</dependency>
 
-		<!--■■■■ 데이터베이스 관련 설정 ■■■■-->
+		<!--■■■■ 데이터베이스 관련 설정 ■■■■ -->
 		<dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
 			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
@@ -63,7 +70,7 @@
 			<version>3.3.1</version>
 		</dependency>
 
-		<!--■■■■ 코드 자동 완성 설정 ■■■■-->
+		<!--■■■■ 코드 자동 완성 설정 ■■■■ -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -71,7 +78,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!--■■■■ 관련 추가 설정 AOP ■■■■-->
+		<!--■■■■ 관련 추가 설정 AOP ■■■■ -->
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
@@ -88,7 +95,7 @@
 			<version>1.9.6</version>
 		</dependency>
 
-		<!--■■■■ 오라클 라이브러리 설정 ■■■■-->
+		<!--■■■■ 오라클 라이브러리 설정 ■■■■ -->
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
@@ -96,7 +103,7 @@
 			<version>11.2.0.4</version>
 		</dependency>
 
-		<!--■■■■ 설정 mybatis ■■■■-->
+		<!--■■■■ 설정 mybatis ■■■■ -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -108,7 +115,7 @@
 			<version>1.3.2</version>
 		</dependency>
 
-		<!--■■■■ 스프링 설정 ■■■■-->
+		<!--■■■■ 스프링 설정 ■■■■ -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -178,14 +185,14 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!--■■■■ 외부 의존관계 자동 설정 ■■■■-->
+		<!--■■■■ 외부 의존관계 자동 설정 ■■■■ -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
 
-		<!--■■■■ 서블릿 ■■■■-->
+		<!--■■■■ 서블릿 ■■■■ -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -212,7 +219,7 @@
 	</dependencies>
 
 	<build>
-		<!--■■■■ 메이븐 플러그인 변경 설정 ■■■■-->
+		<!--■■■■ 메이븐 플러그인 변경 설정 ■■■■ -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>

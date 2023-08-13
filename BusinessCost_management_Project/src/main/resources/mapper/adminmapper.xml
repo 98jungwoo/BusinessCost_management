@@ -69,17 +69,6 @@ from
 	company = #{company} -->
  </select>
 
-<!-- 논리식 "when count(*) > 0"이 참이면 1을 , 참이아니면 0을 반환한다. end 논리끝-->
-<!-- <select id="IdCheck" resultType="boolean" parameterType="java.lang.String">
-select
-	case when count(*) > 0 then 1 else 0 end
-from 
-	tbl_adminmember
-where 
-	userID = #{userID}
-</select> -->
-
-
 <!-- idCnt는 ID가 존재하면 Count한 int값 1을 (중복을 막아놓으면 1개밖에 생성하지 못하기 때문) 결과값으로 주고
 그 값이 1이면 ajax부분에서 아이디가 중복됐다는 alert창을 띄워서 유효성 검사 -->
 <select id="IdCheck" parameterType="adminDTO" resultType="int">
@@ -91,6 +80,22 @@ where
 	where
 		userID = #{userID}
 ]]>	
+</select>
+
+
+<resultMap id="adminDTOResultMap" type="HashMap">
+<result property="adminNum" 		column="adminNum" 		javaType="int"/>
+<result property="company" 			column="company" 		javaType="String"/>
+<result property="adminName" 		column="adminName" 		javaType="String"/>
+<result property="adminBirthday" 	column="adminBirthday" 	javaType="String"/>
+<result property="jobManager" 		column="jobManager" 	javaType="String"/>
+<result property="businessType" 	column="businessType" 	javaType="String"/>
+<result property="adminPhonenum" 	column="adminPhonenum" 	javaType="String"/>
+<result property="userID" 			column="userID" 		javaType="String"/>
+<result property="password" 		column="password" 		javaType="String"/>
+</resultMap>
+<select id="login" resultMap="adminDTOResultMap">
+select* from tbl_adminmember where userID = #{userID}
 </select>
 
 </mapper>

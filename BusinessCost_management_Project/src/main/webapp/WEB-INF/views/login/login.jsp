@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>어깨동무 게시판</title>
+<title>로그인</title>
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="./css/global.css">
 <link rel="stylesheet" type="text/css" href="./css/all.min.css">
@@ -44,13 +44,13 @@
 							<h1 class="loginFont">LOGIN</h1>
 						</div>
 						<div class="card-body">
-							<form action="./Login.me" method="post" id="signupForm"
+							<form action="./Login" method="post" id="signupForm"
 								enctype="application/x-www-form-urlencoded">
 								<fieldset>
 
 									<div class="form-group">
-										<label for="id">ID</label> <input type="text" name="id"
-											id="id" class="form-control" placeholder="아이디">
+										<label for="userID">ID</label> <input type="text" name="userID"
+											id="userID" class="form-control" placeholder="아이디">
 									</div>
 
 									<div class="form-group">
