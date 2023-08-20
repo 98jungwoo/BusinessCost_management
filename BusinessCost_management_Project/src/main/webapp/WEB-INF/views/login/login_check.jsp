@@ -28,12 +28,16 @@
 
 <c:choose>
 	<c:when test="${empty adminDTO}">
-            alert("가입되지 않은 아이디입니다.");
-            history.back();
-        </c:when>
+		<script type="text/javascript">
+			alert("가입되지 않은 아이디입니다.");
+			history.back();
+		</script>
+	</c:when>
 	<c:otherwise>
-            location.href="/main/index.jsp";
-        </c:otherwise>
+		<script type="text/javascript">
+			location.href = "./main";
+		</script>
+	</c:otherwise>
 </c:choose>
 </head>
 <body>

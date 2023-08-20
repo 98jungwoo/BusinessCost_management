@@ -28,7 +28,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (adminDTO != null) {
 			logger.info("■■■■■■ interceptor new login success ■■■■■■");
 			httpSession.setAttribute(LOGIN, adminDTO);
-			response.sendRedirect("/main/index");
+			//response.sendRedirect("/main/index");
 		}
 
 	}
@@ -36,14 +36,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		HttpSession httpSession = request.getSession();
-		
-		// 기존의 로그인 정보 제거
-		if (httpSession.getAttribute(LOGIN) != null) {
-			logger.info("■■■■■■ clear login data before ■■■■■■");
-			httpSession.removeAttribute(LOGIN);
-		}
-		
+//		HttpSession httpSession = request.getSession();
+//		
+//		// 기존의 로그인 정보 제거
+//		if (httpSession.getAttribute(LOGIN) != null) {
+//			logger.info("■■■■■■ clear login data before ■■■■■■");
+//			httpSession.removeAttribute(LOGIN);
+//		}
+//		
 		return true;
 	}
 }

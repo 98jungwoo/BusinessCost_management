@@ -58,13 +58,14 @@
 
 				<!-- 메뉴3 -->
 				<ul class="navbar-nav py-3 mb-3 pl-3 pr-3">
-					<li><a href="./index.jsp" class="navbar-brand"> Main </a></li>
+					<li><a href="./main" class="navbar-brand"> Main </a></li>
 				</ul>
 
 				<!-- 메뉴 로그인 담당자 정보 -->
 				<ul class="navbar-nav py-3 mb-3 pl-4 pr-3">
 					<li class="nav-item dropdown mr-3"><a class="navbar-brand"
-						data-toggle="dropdown">남정우(중랑노인복지관) </a>
+						data-toggle="dropdown">남정우(중랑노인복지관) ${sessionScope.adminName}(${sessionScope.company})</a>
+
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="./#"> 로그아웃 </a> <a
 								class="dropdown-item"

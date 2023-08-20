@@ -19,13 +19,57 @@
 <body>
 
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
-		<!-- 이거 색상을 검은색으로 바구고 싶어  -->
 		<div class="container">
+			<!-- 메뉴를 왼쪽으로 하게 하기 위해서 생성  -->
 			<div class="col-md-6"></div>
-			<div class="d-flex justify-content-between">
-				<div id="toggle" class="navbar-collapse collapse">
-					<a href="./index.jsp" class="navbar-brand">남정우(중랑노인복지관) </a>
-				</div>
+
+			<!-- 메뉴1 -->
+			<div id="toggle" class="navbar-collapse collapse">
+				<ul class="navbar-nav">
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown mr-3">
+						<p class="nav-link dropdown-toggle" data-toggle="dropdown">
+							사업비 진행 현황</p>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="./#?id=${sessionScope.id}">
+								공익형 </a> <a class="dropdown-item" href="./#?id=${sessionScope.id}">
+								시장형 </a> <a class="dropdown-item" href="./#?id=${sessionScope.id}">
+								사회서비스형 </a>
+						</div>
+				</ul>
+
+				<!-- 메뉴2 -->
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown mr-3">
+						<p class="nav-link dropdown-toggle" data-toggle="dropdown">
+							참여자 진행 현황</p>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="./#?id=${sessionScope.id}">
+								공익형 </a> <a class="dropdown-item" href="./#?id=${sessionScope.id}">
+								시장형 </a> <a class="dropdown-item" href="./#?id=${sessionScope.id}">
+								사회서비스형 </a>
+						</div>
+				</ul>
+
+				<!-- 메뉴3 -->
+				<ul class="navbar-nav py-3 mb-3 pl-3 pr-3">
+					<li><a href="./main" class="navbar-brand"> Main </a></li>
+				</ul>
+
+				<!-- 메뉴 로그인 담당자 정보 -->
+				<ul class="navbar-nav py-3 mb-3 pl-4 pr-3">
+					<li class="nav-item dropdown mr-3"><a class="navbar-brand"
+						data-toggle="dropdown">남정우(중랑노인복지관) ${sessionScope.adminName}(${sessionScope.company})</a>
+
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="./#"> 로그아웃 </a> <a
+								class="dropdown-item"
+								href="./AdminSelectDetail?userID=${sessionScope.userID}">
+								개인정보변경 </a> <a class="dropdown-item" href="./AdminSelectAll">
+								담당자목록 </a>
+						</div>
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -149,7 +193,7 @@
 					</div>
 				</div>
 				<!-- 사회서비스형 정보 -->
-				<div class="col-md-3">
+								<div class="col-md-3">
 					<div class="card text-center bg-primary text-white mb-3">
 						<div class="card-body">
 							<h5>
@@ -197,6 +241,7 @@
 									</tr>
 								</tbody>
 							</table>
+
 						</div>
 					</div>
 				</div>
