@@ -28,7 +28,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (adminDTO != null) {
 			logger.info("■■■■■■ interceptor new login success ■■■■■■");
 			httpSession.setAttribute(LOGIN, adminDTO);
-			//response.sendRedirect("/index");
+			response.sendRedirect("/main/index");
 		}
 
 	}
@@ -47,3 +47,4 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		return true;
 	}
 }
+

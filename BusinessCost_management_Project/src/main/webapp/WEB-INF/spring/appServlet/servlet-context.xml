@@ -25,18 +25,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-<beans:bean id="loginInterceptor" class="woo.cost.mgmt.login.interceptor.LoginInterceptor"/>
+<!--  <beans:bean id="loginInterceptor" class="woo.cost.mgmt.login.interceptor.LoginInterceptor"/>
    <mvc:interceptors>
        <mvc:interceptor>
-        <mvc:mapping path="/login/login"/>
+        <mvc:mapping path="/Login"/>
         <beans:ref bean="loginInterceptor"/>
 		</mvc:interceptor>
-   </mvc:interceptors>
+   </mvc:interceptors>  -->
 
 <!-- <beans:bean id="loginInterceptor" class="woo.cost.mgmt.login.interceptor.LoginInterceptor"/>
    <mvc:interceptors>
        <mvc:interceptor>
-			<mvc:mapping path="/inde.jsp"/>   
+			<mvc:mapping path="/index.jsp"/>   
 			<mvc:mapping path="/**"/> 										모든 URL
 			<mvc:exclude-mapping path="/"/> 			      				제외되는 URL
 			<mvc:exclude-mapping path="/login"/>      						제외되는 URL
@@ -44,7 +44,17 @@
 			<mvc:exclude-mapping path="/loginpw.pm"/> 				제외되는 URL
 			<beans:ref bean="loginInterceptor"/>   							회원 사용자인지 검사
 		</mvc:interceptor>
-   </mvc:interceptors>  -->
+   </mvc:interceptors> -->
+   
+ <beans:bean id="loginInterceptor" class="woo.cost.mgmt.login.interceptor.LoginInterceptor"/>
+   <mvc:interceptors>
+       <mvc:interceptor>
+       <mvc:mapping path="/**"/> 
+       <mvc:exclude-mapping path="/"/> 
+        <mvc:exclude-mapping path="login"/>  
+        <beans:ref bean="loginInterceptor"/>
+		</mvc:interceptor>
+   </mvc:interceptors> 
 	
 	<context:component-scan base-package="woo.cost.mgmt" />
 	

@@ -8,13 +8,13 @@
 
 <!-- 나랑 회사가 같은 사람들만 리스트로 볼수 있게 한다. -->
  <select id="adminSelectAll" parameterType="adminDTO" resultType="adminDTO">
-select 
-	adminNum, company, adminName, to_char(adminBirthday, 'yyyy-mm-dd')adminBirthday, jobManager, businessType, 
-    adminPhonenum, userID, password
-from 
-	tbl_adminmember
+	select 
+		adminNum, company, adminName, to_char(adminBirthday, 'YYYY-MM-DD')adminBirthday, jobManager, businessType, 
+   		adminPhonenum, userID, password
+	from 
+		tbl_adminmember
 <!-- where 
-	company = #{company} -->
+		company = #{company} -->
 order by 
 	case
 		when jobManager = '일자리담당' then 1
@@ -27,21 +27,22 @@ order by
  <!-- 같은 회사안에서도 담당자의 정보를 상세하게 확인할수 있다. -->
  <!-- 이건 jsp에서 하기 세션스코프세션아이디와 같아야지만 샐랙트디테일들어올수 있음-->
  <select id="adminSelectDetail" parameterType="adminDTO" resultType="adminDTO">
-select 
-	adminNum, company, adminName, to_char(adminBirthday, 'yyyy-mm-dd')adminBirthday, jobManager, businessType, 
-    adminPhonenum, userID, password
-from 
-	tbl_adminmember
-where 
-	userID = #{userID}
+	select 
+		adminNum, company, adminName, to_char(adminBirthday, 'YYYY-MM-DD')adminBirthday, jobManager, businessType, 
+    	adminPhonenum, userID, password
+	from 
+		tbl_adminmember
+	where 
+		userID = #{userID}
  </select>
 
 <!-- 담당자 회원가입 -->
  <insert id="adminInsert" parameterType="adminDTO">
- insert 
- 	into tbl_adminmember(
- 		adminNum, company, adminName, adminBirthday, jobManager, businessType, 
-    	adminPhonenum, userID, password)
+ 	insert 
+ 		into 
+ 			tbl_adminmember(
+ 				adminNum, company, adminName, adminBirthday, jobManager, businessType, 
+    			adminPhonenum, userID, password)
     values(
     	(select max(adminNum)+1 as adminNum from tbl_adminmember),
    		 #{company}, #{adminName}, #{adminBirthday}, #{jobManager}, #{businessType}, 
@@ -50,8 +51,8 @@ where
  
 <!-- 회원정보 수정 -->
  <update id="adminUpdate" parameterType="adminDTO">
-update 
-	tbl_adminmember
+	update 
+		tbl_adminmember
 	set
 		userID = #{userID}, password=#{password}, adminName=#{adminName}, adminBirthday=#{adminBirthday}, adminPhonenum=#{adminPhonenum},
 		company =#{company},  jobManager=#{jobManager},businessType=#{businessType}
@@ -61,12 +62,12 @@ update
 
 <!-- 담당자 인원 카운트하기 -->
 <select id="adminCount" resultType="int">
-select 
-	count(*) 
-from 
-	tbl_adminmember
+	select 
+		count(*) 
+	from 
+		tbl_adminmember
 <!-- where 
-	company = #{company} -->
+		company = #{company} -->
  </select>
 
 <!-- idCnt는 ID가 존재하면 Count한 int값 1을 (중복을 막아놓으면 1개밖에 생성하지 못하기 때문) 결과값으로 주고
@@ -76,26 +77,32 @@ from
 	select
 		count(*)
 	from
-	tbl_adminmember
+		tbl_adminmember
 	where
 		userID = #{userID}
 ]]>	
 </select>
 
 
-<resultMap id="adminDTOResultMap" type="HashMap">
-<result property="adminNum" 		column="adminNum" 		javaType="int"/>
-<result property="company" 			column="company" 		javaType="String"/>
-<result property="adminName" 		column="adminName" 		javaType="String"/>
-<result property="adminBirthday" 	column="adminBirthday" 	javaType="String"/>
-<result property="jobManager" 		column="jobManager" 	javaType="String"/>
-<result property="businessType" 	column="businessType" 	javaType="String"/>
-<result property="adminPhonenum" 	column="adminPhonenum" 	javaType="String"/>
-<result property="userID" 			column="userID" 		javaType="String"/>
-<result property="password" 		column="password" 		javaType="String"/>
+<resultMap id="adminDTOResultMap" type="woo.cost.mgmt.admin.model.AdminDTO">
+	<result property="adminNum" 		column="adminNum" 		javaType="int"/>
+	<result property="company" 			column="company" 		javaType="String"/>
+	<result property="adminName" 		column="adminName" 		javaType="String"/>
+	<result property="adminBirthday" 	column="adminBirthday" 	javaType="String"/>
+	<result property="jobManager" 		column="jobManager" 	javaType="String"/>
+	<result property="businessType" 	column="businessType" 	javaType="String"/>
+	<result property="adminPhonenum" 	column="adminPhonenum" 	javaType="String"/>
+	<result property="userID" 			column="userID" 		javaType="String"/>
+	<result property="password" 		column="password" 		javaType="String"/>
 </resultMap>
 <select id="login" resultMap="adminDTOResultMap">
-select* from tbl_adminmember where userID = #{userID}
+	select 
+		adminNum, company, adminName, to_char(adminBirthday, 'YYYY-MM-DD')adminBirthday, jobManager, businessType, 
+    	adminPhonenum, userID, password
+	from 
+		tbl_adminmember 
+	where 
+		userID = #{userID}
 </select>
 
 </mapper>

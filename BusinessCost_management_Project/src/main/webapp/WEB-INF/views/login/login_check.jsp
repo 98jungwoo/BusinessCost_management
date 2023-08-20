@@ -32,7 +32,7 @@
             history.back();
         </c:when>
 	<c:otherwise>
-            location.href="./index.jsp";
+            location.href="/main/index.jsp";
         </c:otherwise>
 </c:choose>
 </head>
