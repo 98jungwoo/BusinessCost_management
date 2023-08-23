@@ -83,6 +83,10 @@ public class LoginController {
 		}
 
 		model.addAttribute("adminDTO", adminDTO);
+		
+		//여기에 세션이랑 쿠키르 넣어야할거같다.
+		
+		
 		logger.info("LoginController ■■4■■■ loginView ■■■■■");
 		// return "redirect:/index"; //Redirect to index.jsp
 		return "./login/login_check";

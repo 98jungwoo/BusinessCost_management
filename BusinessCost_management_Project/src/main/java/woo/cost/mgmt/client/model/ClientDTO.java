@@ -18,7 +18,7 @@ public class ClientDTO {
 	private int totalclients; //참여자 총 인원
 	private int businessType; // 사업종류
 	private int adminName; // 담당자 이름
-	private int remarks; // 비고
+	private String remarks; // 비고
 	
 	//tbl_clientMember
 	private int usedClientWages; //1인 지급 임금
