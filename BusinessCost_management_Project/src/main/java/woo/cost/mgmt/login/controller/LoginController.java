@@ -1,6 +1,7 @@
 package woo.cost.mgmt.login.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -54,41 +55,13 @@ public class LoginController {
 	}
 
 	@PostMapping("Login")
-	public String login(LoginDTO loginDTO, HttpSession httpSession, Model model) {
-		logger.info("loginDTO" + loginDTO.getUserID());
+	public String login(AdminDTO adminDTO, Model model,HttpServletRequest request,
+			HttpServletResponse response) {
+
 		logger.info("LoginController ■■■2■■ loginView ■■■■■");
-		AdminDTO adminDTO = loginServiceImp.login(loginDTO);
-
-		/* 혹시 동작 되면 이거 해제해보기 logger.info("password" + adminDTO); */
-
-		// BCrypt는 해시 알고리즘으로 비밀번호를 암호화 하는기법
-//	if (adminDTO == null || !BCrypt.checkpw(loginDTO.getPassword(), adminDTO.getPassword())) {
-//		return;
-//	}
-
-		// BCrypt로 비밀번호를 암호화 하는기법을 사용하지 않은기법
-		// adminDTO가 null인 경우나 입력된 비밀번호와 adminDTO에 저장된 비밀번호가 일치하지 않는 경우에만 조건이 참이되어 메서드
-		// 종료
-		/*
-		 * if (adminDTO == null ||
-		 * !loginDTO.getPassword().equals(adminDTO.getPassword())) { return
-		 * "./login/login_check"; } model.addAttribute("adminDTO", adminDTO); return
-		 * "./login/login_check";
-		 */
-
-		if (adminDTO == null || !loginDTO.getPassword().equals(adminDTO.getPassword())) {
-			logger.info("LoginController ■■3■■■ loginView ■■■■■ " + "/ ■■로그인비번■■■ " + loginDTO.getPassword()
-					+ "/ ■■DTO비번■■■ " + adminDTO.getPassword());
-			return "./login/login_check";
-		}
-
-		model.addAttribute("adminDTO", adminDTO);
-		
-		//여기에 세션이랑 쿠키르 넣어야할거같다.
-		
+		model.addAttribute("adminDTO", loginServiceImp.login(adminDTO, request, response));
 		
 		logger.info("LoginController ■■4■■■ loginView ■■■■■");
-		// return "redirect:/index"; //Redirect to index.jsp
 		return "./login/login_check";
 	}
 

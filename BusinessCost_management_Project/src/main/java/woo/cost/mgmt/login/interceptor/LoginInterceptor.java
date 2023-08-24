@@ -20,10 +20,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		logger.info("■■■■■■ interceptor postHandel ■■■■■■");
 		HttpSession httpSession = request.getSession();
+
 		ModelMap modelMap = modelAndView.getModelMap();
+		logger.info("■■■■■■ ModelMap modelMap = modelAndView.getModelMap(); 실행 ■■■■■■" + modelMap);
 		
 		//로그인 컨트롤러에서 model.addAttribute("adminDTO", adminDTO); 이렇게 모델에 담아줬기 때문에 이름을 adminDTO 로 해야되는거임
-		Object adminDTO = modelMap.get("adminDTO");
+		Object adminDTO = modelMap.addAttribute("adminDTO");
+		logger.info("■■■■■■ Object adminDTO = modelMap.addAttribute(\"adminDTO\"); 실행 ■■■■■■" + adminDTO);
 		
 		if (adminDTO != null) {
 			logger.info("■■■■■■ interceptor new login success ■■■■■■");

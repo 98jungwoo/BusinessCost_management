@@ -20,9 +20,9 @@ public class LoginDAOImp implements LoginDAO {
 	
 	//로그인을 실행하기 위한 메서드
 	@Override
-	public AdminDTO login(LoginDTO loginDTO) {
+	public AdminDTO login(AdminDTO adminDTO) {
 		logger.info("■■■■■■■■■ LoginDAOImp");
-		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.login", loginDTO);
+		return sqlsessionTemplate.selectOne("woo.cost.mgmt.admin.model.adminDTO.login", adminDTO);
 	}
 
 }

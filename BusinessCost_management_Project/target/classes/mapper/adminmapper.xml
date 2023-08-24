@@ -83,7 +83,7 @@ order by
 ]]>	
 </select>
 
-
+<!-- 로그인  -->
 <resultMap id="adminDTOResultMap" type="woo.cost.mgmt.admin.model.AdminDTO">
 	<result property="adminNum" 		column="adminNum" 		javaType="int"/>
 	<result property="company" 			column="company" 		javaType="String"/>
@@ -102,7 +102,7 @@ order by
 	from 
 		tbl_adminmember 
 	where 
-		userID = #{userID}
+		userID = #{userID} and password = #{password}
 </select>
 
 </mapper>
